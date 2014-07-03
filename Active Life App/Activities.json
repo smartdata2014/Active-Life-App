@@ -1,0 +1,52 @@
+{
+    "Going Events" :[{
+               "event_name" : "Normal Event",
+               "Time" : "05_07_2014 02:00 PM",
+               },
+               {
+               "event_name" : "Normal Event",
+               "Time" : "05_07_2014 02:00 PM",
+               },
+               {
+               "event_name" : "Normal Event",
+               "Time" : "05_07_2014 02:00 PM",
+               },
+               {
+               "event_name" : "Normal Event",
+               "Time" : "05_07_2014 02:00 PM",
+               },
+               {
+               "event_name" : "Normal Event",
+               "Time" : "05_07_2014 02:00 PM",
+               },
+               {
+               "event_name" : "Normal Event",
+               "Time" : "05_07_2014 02:00 PM",
+               }
+               ],
+    "Invited Events" :[{
+                     "event_name" : "Normal Event",
+                     "Time" : "05_07_2014 02:00 PM",
+                     },
+                     {
+                     "event_name" : "Normal Event",
+                     "Time" : "05_07_2014 02:00 PM",
+                     },
+                     {
+                     "event_name" : "Normal Event",
+                     "Time" : "05_07_2014 02:00 PM",
+                     },
+                     {
+                     "event_name" : "Normal Event",
+                     "Time" : "05_07_2014 02:00 PM",
+                     },
+                     {
+                     "event_name" : "Normal Event",
+                     "Time" : "05_07_2014 02:00 PM",
+                     },
+                     {
+                     "event_name" : "Normal Event",
+                     "Time" : "05_07_2014 02:00 PM",
+                     }
+                     ]
+}

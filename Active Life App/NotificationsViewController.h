@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  NotificationsViewController.h
 //  Active Life App
 //
 //  Created by sdnmacmini10 on 23/06/14.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface NotificationsViewController : UIViewController
 
-@property (strong, nonatomic) UIWindow *window;
-+(id)storyBoard;
 @end

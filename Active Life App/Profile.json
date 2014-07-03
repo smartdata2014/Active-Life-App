@@ -1,0 +1,45 @@
+{
+    "Name": "Mohammed Kelani",
+    "Location": "Abu Dhabi, UAE",
+    "Interest Tags" : "Interest tags",
+    "About me" : "About me",
+    "My Events" : [{
+                   "Event" : "Dubai Event",
+                   "Sports" : "Soccer",
+                   },
+                   {
+                   "Event" : "Sharjah Event",
+                   "Sports" : "Soccer",
+                   },
+                   {
+                   "Event" : "Karachi Event",
+                   "Sports" : "Soccer",
+                   }
+    ],
+    "Went" : [{
+                   "Event" : "New York Event",
+                   "Sports" : "Baseball",
+                   },
+                   {
+                   "Event" : "Mohali Event",
+                   "Sports" : "Cricket",
+                   },
+                   {
+                   "Event" : "Amsterdam Event",
+                   "Sports" : "Athletics",
+                   }
+                   ],
+    "Going" : [{
+                   "Event" : "Delhi Event",
+                   "Sports" : "Badminton",
+                   },
+                   {
+                   "Event" : "Mumbai Event",
+                   "Sports" : "Lawn Tennis",
+                   },
+                   {
+                   "Event" : "London Event",
+                   "Sports" : "Table Tennis",
+                   }
+                   ],
+}

@@ -1,0 +1,40 @@
+{
+    "Event_name" : "Event 1",
+    "Location" : "Dubai",
+    "Time/Date" : "2014/05/12 05:00 PM",
+    "Details" : "Sports Event",
+    "Host" : "Mohammed",
+    "latitude" : "24.77",
+    "longitude" : "75.05",
+    "Events" :[{
+               "event_name" : "Normal Event",
+               "Location" : "California",
+               "Time" : "02:00 PM",
+               },
+               {
+               "event_name" : "Normal Event",
+               "Location" : "California",
+               "Time" : "02:00 PM",
+               },
+               {
+               "event_name" : "Normal Event",
+               "Location" : "California",
+               "Time" : "02:00 PM",
+               },
+               {
+               "event_name" : "Normal Event",
+               "Location" : "California",
+               "Time" : "02:00 PM",
+               },
+               {
+               "event_name" : "Normal Event",
+               "Location" : "California",
+               "Time" : "02:00 PM",
+               },
+               {
+               "event_name" : "Normal Event",
+               "Location" : "California",
+               "Time" : "02:00 PM",
+               }
+               ]
+}

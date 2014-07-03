@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  HomeViewController.h
 //  Active Life App
 //
 //  Created by sdnmacmini10 on 23/06/14.
@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface HomeViewController : UIViewController
 
-@property (strong, nonatomic) UIWindow *window;
-+(id)storyBoard;
 @end

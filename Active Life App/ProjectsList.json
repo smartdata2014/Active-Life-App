@@ -1,0 +1,58 @@
+{
+    "projects": [
+        {
+            "projectResources": [
+                {
+                    "resourceName": "Rohit Verma",
+                    "resourceId": 1,
+                    "resourceEmail": null,
+                    "resourceDesignation": null
+                },
+                {
+                    "resourceName": "abc",
+                    "resourceId": 90,
+                    "resourceEmail": null,
+                    "resourceDesignation": null
+                },
+                {
+                    "resourceName": "John",
+                    "resourceId": 10,
+                    "resourceEmail": null,
+                    "resourceDesignation": null
+                }
+            ],
+            "channel": "E",
+            "endDate": null,
+            "startDate": "02-Mar-13",
+            "branch": null,
+            "pi": 210,
+            "technology": null,
+            "projectName": "Dummy Project",
+            "projectId": 1
+        },
+        {
+            "projectResources": [
+                {
+                    "resourceName": "gurdev",
+                    "resourceId": 0,
+                    "resourceEmail": null,
+                    "resourceDesignation": null
+                },
+                {
+                    "resourceName": "rakesh",
+                    "resourceId": 0,
+                    "resourceEmail": null,
+                    "resourceDesignation": null
+                }
+            ],
+            "channel": "O",
+            "endDate": null,
+            "startDate": "8-Oct-13",
+            "branch": null,
+            "pi": 120,
+            "technology": null,
+            "projectName": "Project2",
+            "projectId": 2
+        }
+    ]
+}

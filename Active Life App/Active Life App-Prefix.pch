@@ -13,4 +13,24 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "AppDelegate.h"
+    #import "LoginViewController.h"
+    #import "SignUpViewController.h"
+    #import "MenuViewController.h"
+    #import "HomeViewController.h"
+    #import "SearchViewController.h"
+    #import "EventDetailsViewController.h"
+    #import "NotificationsViewController.h"
+    #import "AcivitiesViewController.h"
+    #import "CreateEventViewController.h"
+    #import "ProfileViewController.h"
+    #import "FriendsListViewController.h"
+    #import "SWRevealViewController.h"
+    #import "SettingsViewController.h"
+    #import "Helper.h"
+    #import <FacebookSDK/FacebookSDK.h>
+
+
+#define IS_IPHONE5 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
+
 #endif

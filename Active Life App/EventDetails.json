@@ -1,0 +1,21 @@
+{
+    "Event_name" : "Event 1",
+    "Location" : "Dubai",
+    "Time/Date" : "2014/05/12 05:00 PM",
+    "Details" : "Sports Event",
+    "Host" : "Mohammed",
+    "latitude" : "24.77",
+    "longitude" : "75.05",
+    "Friends" :{
+        "Attending" : [
+                       "Friend 1",
+                       "Friend 2",
+                       "Friend 3"
+                       ],
+        "Not Attending" : [
+                           "Friend 4",
+                           "Friend 5",
+                           "Friend 6"
+                           ]
+    }
+}
