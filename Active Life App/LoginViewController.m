@@ -11,8 +11,11 @@
 @interface LoginViewController ()<SWRevealViewControllerDelegate,FBLoginViewDelegate>
 {
     IBOutlet UIView *forgotPasswordView;
+    IBOutlet UITextField *txtUsername, *txtPassword;
 }
+
 @property (strong, nonatomic) IBOutlet FBLoginView *fbLoginView;
+
 -(IBAction)btnLoginPressed:(id)sender;
 -(IBAction)btnSignUpPressed:(id)sender;
 -(IBAction)btnSignUpWithFacebookPressed:(id)sender;
@@ -160,6 +163,13 @@
         NSLog(@"Email the password");
     }
 }
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 
 /*
 #pragma mark - Navigation

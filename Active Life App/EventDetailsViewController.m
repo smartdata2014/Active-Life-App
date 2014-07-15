@@ -9,9 +9,9 @@
 #import "EventDetailsViewController.h"
 
 @interface EventDetailsViewController ()<SWRevealViewControllerDelegate>{
-
     IBOutlet UILabel *lblEvent, *lblLocation, *lblTimeDate, *lblHost, *lblDetails;
 }
+
 -(IBAction)btnMenuPressed:(id)sender;
 -(IBAction)btnRespondRequestPressed:(id)sender;
 @property (nonatomic, strong) NSDictionary *responseDict;

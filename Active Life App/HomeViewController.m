@@ -7,21 +7,26 @@
 //
 
 #import "HomeViewController.h"
+#import "MDDirectionService.h"
 
-
-@interface HomeViewController ()<SWRevealViewControllerDelegate>
+@interface HomeViewController ()<SWRevealViewControllerDelegate,GMSMapViewDelegate>
 {
     IBOutlet UISegmentedControl *segmentControl;
     IBOutlet UITableView *eventTableView;
     IBOutlet UIScrollView *eventScrollView;
     IBOutlet MKMapView *eventMapView;
-//    IBOutlet UIBarButtonItem* revealButtonItem;
+    GMSMapView *mapView_;
+//  IBOutlet UIBarButtonItem* revealButtonItem;
 }
+
 @property (nonatomic, strong) NSDictionary *responseDict;
+@property (strong, nonatomic) NSMutableArray *waypoints;
+@property (strong, nonatomic) NSMutableArray *waypointStrings;
 
 -(IBAction)btnLogOutPressed:(id)sender;
 -(IBAction)btnMenuPressed:(id)sender;
 -(IBAction)SegmentControlActions:(id)sender;
+-(void)intializeMap;
 
 @end
 
@@ -41,6 +46,10 @@
     [super viewDidLoad];
     
     NSLog(@"navigationController..%@",self.navigationController);
+    
+    self.waypoints = [NSMutableArray array];
+    self.waypointStrings = [NSMutableArray array];
+    
     _responseDict = [[NSDictionary alloc] init];
     _responseDict = (NSDictionary *)[Helper ReadFromJSONStore:@"Home.json"];
     NSLog(@"responseDict..%@",_responseDict);
@@ -49,8 +58,96 @@
 //    lblTimeDate.text = [_responseDict valueForKey:@"Time/Date"];
 //    lblHost.text = [_responseDict valueForKey:@"Host"];
 //    lblDetails.text = [_responseDict valueForKey:@"Details"];
-
+//    [self placeMarkers];
     // Do any additional setup after loading the view.
+    [self intializeMap];
+//    mapView_.hidden = NO;
+}
+
+-(void)intializeMap{
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.86
+                                                            longitude:151.20
+                                                                 zoom:6];
+    
+    mapView_ = [GMSMapView mapWithFrame:CGRectMake(0, 65, 320, 505) camera:camera];
+    mapView_.myLocationEnabled = YES;
+    mapView_.mapType = kGMSTypeNormal;
+    mapView_.indoorEnabled = YES;
+    mapView_.accessibilityElementsHidden = NO;
+    mapView_.settings.scrollGestures = YES;
+    mapView_.settings.zoomGestures = YES;
+    mapView_.settings.compassButton = YES;
+    mapView_.settings.myLocationButton = YES;
+    mapView_.delegate = self;
+    mapView_.hidden = YES;
+    // Creates a marker in the center of the map.
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = CLLocationCoordinate2DMake(-33.86, 151.20);
+    marker.title = @"Sydney";
+    marker.snippet = @"Australia";
+    marker.map = mapView_;
+    [self.view addSubview:mapView_];
+//  [self.view bringSubviewToFront:mapView_];
+    [self placeMarkers];
+}
+
+-(void)placeMarkers
+{
+    // Creates a marker in the center of the map
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = CLLocationCoordinate2DMake(35.995602, -78.902153);
+    marker.title = @"PopUp HQ";
+    marker.snippet = @"Durham, NC";
+    marker.icon = [GMSMarker markerImageWithColor:[UIColor blueColor]];
+    //    marker.icon = [UIImage imageNamed:@"someicon.png"];
+    marker.opacity = 0.9;
+    //    marker.flat = YES;
+    marker.map = mapView_;
+}
+
+-(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    NSLog(@"you tapped at %f, %f", coordinate.longitude, coordinate.latitude);
+    
+    CLLocationCoordinate2D tapPosition = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude);
+    
+    GMSMarker *tapMarker = [GMSMarker markerWithPosition:tapPosition];
+    tapMarker.map = mapView_;
+    [self.waypoints addObject:tapMarker];
+    
+    NSString *positionString = [NSString stringWithFormat:@"%f,%f", coordinate.latitude,coordinate.longitude];
+    [self.waypointStrings addObject:positionString];
+    
+    if (self.waypoints.count > 1) {
+        NSDictionary *query = @{ @"sensor" : @"false",
+                                 @"waypoints" : self.waypointStrings };
+        MDDirectionService *mds = [[MDDirectionService alloc] init];
+        SEL selector = @selector(addDirections:);
+        [mds setDirectionsQuery:query
+                   withSelector:selector
+                   withDelegate:self];
+    }
+}
+
+-(void)addDirections:(NSDictionary *)json
+{
+    NSDictionary *routes = json[@"routes"][0];
+    NSDictionary *route = routes[@"overview_polyline"];
+    NSString *overview_route = route[@"points"];
+    GMSPath *path = [GMSPath pathFromEncodedPath:overview_route];
+    GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+    polyline.map = mapView_;
+}
+
+-(void)mapView:(GMSMapView *)mapView willMove:(BOOL)gesture
+{
+    //    [mapView clear];
+}
+
+-(void)mapView:(GMSMapView *)mapView idleAtCameraPosition:(GMSCameraPosition *)position
+{
+    NSLog(@"map became idle");
+    //    [self placeMarkers];
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -74,17 +171,18 @@
 
 -(IBAction)SegmentControlActions:(id)sender{
     NSLog(@"sender..%i",[segmentControl selectedSegmentIndex]);
+    
     if ([segmentControl selectedSegmentIndex] == 0) {
         eventTableView.hidden = NO;
         eventScrollView.hidden = NO;
-        eventMapView.hidden = YES;
+        mapView_.hidden = YES;
         NSLog(@"ListView");
     }
     else if ([segmentControl selectedSegmentIndex] == 1)
     {
         eventTableView.hidden = YES;
         eventScrollView.hidden = YES;
-        eventMapView.hidden = NO;
+        mapView_.hidden = NO;
         NSLog(@"Map View");
     }
 }

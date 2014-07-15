@@ -29,7 +29,6 @@
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
     _arrEvents = [[NSMutableArray alloc] initWithObjects:@"Time change",@"Venue change",@"Invite recieved",@"Game alert",nil];
-
     // Do any additional setup after loading the view.
 }
 

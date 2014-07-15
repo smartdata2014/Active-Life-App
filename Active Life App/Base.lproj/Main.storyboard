@@ -616,10 +616,6 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WTx-BB-fOE">
-                                <rect key="frame" x="-6" y="74" width="333" height="494"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -627,7 +623,6 @@
                         <barButtonItem title="Item" id="jFI-Kp-dyb"/>
                     </toolbarItems>
                     <connections>
-                        <outlet property="eventMapView" destination="WTx-BB-fOE" id="jKw-6p-fHY"/>
                         <outlet property="eventScrollView" destination="69z-vY-HXZ" id="RPV-h0-lLc"/>
                         <outlet property="eventTableView" destination="8Op-AB-AJE" id="d3w-IZ-beH"/>
                         <outlet property="segmentControl" destination="ANr-lc-3eW" id="9uQ-ZX-Ls4"/>
@@ -859,24 +854,36 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="bXX-5n-rnA" id="HMm-t5-XJO"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tst-0y-HMO">
                                 <rect key="frame" x="83" y="116" width="217" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="bXX-5n-rnA" id="z4L-3C-qFh"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J9z-Bv-11k">
                                 <rect key="frame" x="83" y="154" width="217" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="bXX-5n-rnA" id="CM6-na-taO"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zqc-EY-fpz">
                                 <rect key="frame" x="83" y="192" width="217" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="bXX-5n-rnA" id="3Ii-u8-dpc"/>
+                                </connections>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PJA-iw-nLB">
                                 <rect key="frame" x="0.0" y="346" width="320" height="174"/>
@@ -1088,12 +1095,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="C3F-tr-t1S" id="gxc-ag-jgL"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ybi-DH-lpv">
                                 <rect key="frame" x="40" y="175" width="246" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="C3F-tr-t1S" id="jQf-f2-N5S"/>
+                                </connections>
                             </textField>
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qGS-nK-YJg">
                                 <rect key="frame" x="0.0" y="50" width="320" height="518"/>
@@ -1161,6 +1174,8 @@
                     <connections>
                         <outlet property="fbLoginView" destination="OZ1-zb-Xcb" id="ClF-YG-8nf"/>
                         <outlet property="forgotPasswordView" destination="qGS-nK-YJg" id="pxM-1N-xI7"/>
+                        <outlet property="txtPassword" destination="xXz-ru-aOl" id="GYw-OH-CEs"/>
+                        <outlet property="txtUsername" destination="ybi-DH-lpv" id="F54-3D-llc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B2Z-0p-rCF" userLabel="First Responder" sceneMemberID="firstResponder"/>

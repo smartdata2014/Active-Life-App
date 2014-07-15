@@ -168,7 +168,6 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     return self;
 }
 
-
 - (void)reloadShadow
 {
     CALayer *frontViewLayer = _frontView.layer;
@@ -177,7 +176,6 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     frontViewLayer.shadowOffset = _c.frontViewShadowOffset;
     frontViewLayer.shadowRadius = _c.frontViewShadowRadius;
 }
-
 
 - (CGRect)hierarchycalFrameAdjustment:(CGRect)frame
 {
@@ -244,7 +242,6 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
 {
     CGFloat revealWidth;
     CGFloat revealOverdraw;
-    
     CGFloat location = 0.0f;
     
     int symetry = frontViewPosition<FrontViewPositionLeft? -1 : 1;
@@ -271,7 +268,6 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     _frontView.frame = [self hierarchycalFrameAdjustment:frame];
 }
 
-
 # pragma mark private
 
 
@@ -296,7 +292,6 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     _rightView.frame = CGRectMake(bounds.size.width-rightWidth+rightXLocation, 0.0f, rightWidth, bounds.size.height);
 }
 
-
 - (void)_prepareForNewPosition:(FrontViewPosition)newPosition;
 {
     if ( _rearView == nil || _rightView == nil )
@@ -311,7 +306,6 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     if ( (symetry < 0 && rightIndex < rearIndex) || (symetry > 0 && rearIndex < rightIndex) )
         [self exchangeSubviewAtIndex:rightIndex withSubviewAtIndex:rearIndex];
 }
-
 
 - (CGFloat)_adjustedDragLocationForLocation:(CGFloat)x
 {
@@ -342,7 +336,6 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
 
     else if (x <= revealWidth+2*revealOverdraw)
         result = revealWidth + (x-revealWidth)/2;   // slow down translation by halph the movement.
-
     else
         result = revealWidth+revealOverdraw;        // keep at the rightMost location.
     
@@ -412,30 +405,25 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     return UIModalPresentationNone;  // not applicable
 }
 
-
 - (void)updateInteractiveTransition:(CGFloat)percentComplete
 {
     // not supported
 }
-
 
 - (void)finishInteractiveTransition
 {
     // not supported
 }
 
-
 - (void)cancelInteractiveTransition
 {
     // not supported
 }
 
-
 - (void)completeTransition:(BOOL)didComplete
 {
     _completion();
 }
-
 
 - (UIViewController *)viewControllerForKey:(NSString *)key
 {
@@ -448,12 +436,10 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     return nil;
 }
 
-
 - (CGRect)initialFrameForViewController:(UIViewController *)vc
 {
     return _view.bounds;
 }
-
 
 - (CGRect)finalFrameForViewController:(UIViewController *)vc
 {
@@ -461,7 +447,6 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
 }
 
 @end
-
 
 #pragma mark - SWDefaultAnimationController Class
 
@@ -473,7 +458,6 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     NSTimeInterval _duration;
 }
 
-
 - (id)initWithDuration:(NSTimeInterval)duration
 {
     self = [super init];
@@ -484,12 +468,10 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     return self;
 }
 
-
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     return _duration;
 }
-
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext
 {
@@ -498,7 +480,8 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
 
     [UIView transitionFromView:fromViewController.view toView:toViewController.view duration:_duration
         options:UIViewAnimationOptionTransitionCrossDissolve|UIViewAnimationOptionOverrideInheritedOptions
-        completion:^(BOOL finished) { [transitionContext completeTransition:finished]; }];
+        completion:^(BOOL finished) { [transitionContext completeTransition:finished];
+        }];
 }
 
 @end
@@ -549,7 +532,6 @@ const int FrontViewPositionNone = 0xff;
     return [self initWithRearViewController:nil frontViewController:nil];
 }
 
-
 - (id)initWithRearViewController:(UIViewController *)rearViewController frontViewController:(UIViewController *)frontViewController;
 {
     self = [super init];
@@ -561,7 +543,6 @@ const int FrontViewPositionNone = 0xff;
     }
     return self;
 }
-
 
 - (void)_initDefaultProperties
 {
@@ -772,7 +753,6 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
     [self setFrontViewController:frontViewController animated:NO];
 }
 
-
 - (void)setFrontViewController:(UIViewController *)frontViewController animated:(BOOL)animated
 {
     if ( ![self isViewLoaded])
@@ -783,7 +763,6 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
     
     [self _dispatchSetFrontViewController:frontViewController animated:animated];
 }
-
 
 - (void)pushFrontViewController:(UIViewController *)frontViewController animated:(BOOL)animated
 {
@@ -814,12 +793,10 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
     [self _dispatchSetRearViewController:rearViewController animated:animated];
 }
 
-
 - (void)setRightViewController:(UIViewController *)rightViewController
 {
     [self setRightViewController:rightViewController animated:NO];
 }
-
 
 - (void)setRightViewController:(UIViewController *)rightViewController animated:(BOOL)animated
 {
@@ -832,7 +809,6 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
     [self _dispatchSetRightViewController:rightViewController animated:animated];
 }
 
-
 - (void)revealToggleAnimated:(BOOL)animated
 {
     FrontViewPosition toogledFrontViewPosition = FrontViewPositionLeft;
@@ -841,7 +817,6 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
     
     [self setFrontViewPosition:toogledFrontViewPosition animated:animated];
 }
-
 
 - (void)rightRevealToggleAnimated:(BOOL)animated
 {
@@ -852,12 +827,10 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
     [self setFrontViewPosition:toogledFrontViewPosition animated:animated];
 }
 
-
 - (void)setFrontViewPosition:(FrontViewPosition)frontViewPosition
 {
     [self setFrontViewPosition:frontViewPosition animated:NO];
 }
-
 
 - (void)setFrontViewPosition:(FrontViewPosition)frontViewPosition animated:(BOOL)animated
 {
@@ -872,13 +845,11 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
     [self _dispatchSetFrontViewPosition:frontViewPosition animated:animated];
 }
 
-
 - (void)setFrontViewShadowRadius:(CGFloat)frontViewShadowRadius
 {
     _frontViewShadowRadius = frontViewShadowRadius;
     [_contentView reloadShadow];
 }
-
 
 - (void)setFrontViewShadowOffset:(CGSize)frontViewShadowOffset
 {
@@ -886,13 +857,11 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
     [_contentView reloadShadow];
 }
 
-
 - (void)setFrontViewShadowOpacity:(CGFloat)frontViewShadowOpacity
 {
     _frontViewShadowOpacity = frontViewShadowOpacity;
     [_contentView reloadShadow];
 }
-
 
 - (UIPanGestureRecognizer*)panGestureRecognizer
 {
@@ -1202,7 +1171,6 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
         [self _rightViewDeploymentForNewFrontViewPosition:FrontViewPositionRight]();
         [self _rearViewDeploymentForNewFrontViewPosition:FrontViewPositionRight]();
     }
-    
     [_contentView dragFrontViewToXLocation:xLocation];
     [self _notifyPanGestureMoved];
 }
@@ -1640,10 +1608,7 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
     return completionBlock;
 }
 
-
 @end
-
-
 
 #pragma mark - UIViewController(SWRevealViewController) Category
 

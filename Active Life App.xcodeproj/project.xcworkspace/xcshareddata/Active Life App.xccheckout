@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>960A2AF7-D1BD-4969-A843-71389BAF81E2</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Active Life App</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>CC7EFD37-9028-4967-A097-746E035E882A</key>
+		<string>https://github.com/smartdata2014/Active-Life-App.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Active Life App.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>CC7EFD37-9028-4967-A097-746E035E882A</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/smartdata2014/Active-Life-App.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>CC7EFD37-9028-4967-A097-746E035E882A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CC7EFD37-9028-4967-A097-746E035E882A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Active Life App</string>
+		</dict>
+	</array>
+</dict>
+</plist>

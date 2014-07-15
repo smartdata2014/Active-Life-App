@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/LoginViewController.m"
-            timestampString = "425280024.141077"
+            timestampString = "426426848.386275"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "-initWithNibName:bundle:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/SWRevealViewController.m"
-            timestampString = "425537664.685607"
+            timestampString = "426170863.955195"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "930"
-            endingLineNumber = "930"
+            startingLineNumber = "899"
+            endingLineNumber = "899"
             landmarkName = "-revealToggle:"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/HomeViewController.m"
-            timestampString = "425980281.397341"
+            timestampString = "426427701.145494"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "-SegmentControlActions:"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/HomeViewController.m"
-            timestampString = "425471339.334068"
+            timestampString = "426423278.578229"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -168,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/HomeViewController.m"
-            timestampString = "425996723.81095"
+            timestampString = "426427701.145494"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "-btnMenuPressed:"
             landmarkType = "5">
          </BreakpointContent>
@@ -199,7 +199,7 @@
                   symbolName = "-[AcivitiesViewController responseDict]"
                   moduleName = "Active Life App"
                   urlString = "file://localhost/Users/sdnmacmini10/Desktop/Active%20Life%20App/Active%20Life%20App/AcivitiesViewController.m"
-                  timestampString = "426064406.17325"
+                  timestampString = "426426624.048947"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
@@ -213,7 +213,7 @@
                   symbolName = "-[AcivitiesViewController setResponseDict:]"
                   moduleName = "Active Life App"
                   urlString = "file://localhost/Users/sdnmacmini10/Desktop/Active%20Life%20App/Active%20Life%20App/AcivitiesViewController.m"
-                  timestampString = "426064406.173471"
+                  timestampString = "426426624.049316"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
@@ -230,11 +230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/LoginViewController.m"
-            timestampString = "426062131.696278"
+            timestampString = "426426848.386275"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "-loginViewFetchedUserInfo:user:"
             landmarkType = "5">
          </BreakpointContent>
@@ -246,11 +246,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/LoginViewController.m"
-            timestampString = "426062131.696278"
+            timestampString = "426426848.386275"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "-btnLoginPressed:"
             landmarkType = "5">
          </BreakpointContent>
@@ -262,11 +262,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/FriendsListViewController.m"
-            timestampString = "426064479.496215"
+            timestampString = "426162638.550006"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -278,11 +278,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/FriendsListViewController.m"
-            timestampString = "426064479.496215"
+            timestampString = "426162638.550006"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -332,6 +332,22 @@
             startingLineNumber = "56"
             endingLineNumber = "56"
             landmarkName = "-BackPressed"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Active Life App/SearchViewController.m"
+            timestampString = "426424647.691409"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -72,7 +72,6 @@
     [friendsTableView reloadData];
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -93,10 +92,10 @@
 {
     static NSString *CellIdentifier = @"FriendCells";
     UITableViewCell *cell;
+    
     if (cell==nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     UILabel *senderLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 11, 220, 20)];

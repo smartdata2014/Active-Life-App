@@ -29,6 +29,7 @@
     #import "SettingsViewController.h"
     #import "Helper.h"
     #import <FacebookSDK/FacebookSDK.h>
+    #import <GoogleMaps/GoogleMaps.h>
 
 
 #define IS_IPHONE5 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)

@@ -28,7 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    menuArray = [[NSMutableArray alloc] initWithObjects:@"Home",@"Search",@"Notifications",@"Activities",@"Create",@"Profile",@"Settings", nil];
+    menuArray = [[NSMutableArray alloc] initWithObjects:@"Home",@"Search",@"Notifications",@"Activities",@"Create",@"Profile",@"Settings",nil];
     // Do any additional setup after loading the view.
 }
 
@@ -80,12 +80,8 @@
     UIViewController *frontViewController;
     if(indexPath.row == 0)
     {
-//        HomeViewController *homeViewController= [[AppDele gate storyBoard] instantiateViewControllerWithIdentifier:@"HomeViewController"];
-//        frontViewController = homeViewController;
-//        EventDetailsViewController *homeViewController= [[AppDelegate storyBoard] instantiateViewControllerWithIdentifier:@"EventDetailsViewController"];
-//        frontViewController = homeViewController;
-        FriendsListViewController *friendsListViewController= [[AppDelegate storyBoard] instantiateViewControllerWithIdentifier:@"FriendsListViewController"];
-        frontViewController = friendsListViewController;
+        HomeViewController *homeViewController= [[AppDelegate storyBoard] instantiateViewControllerWithIdentifier:@"HomeViewController"];
+        frontViewController = homeViewController;
     }
     else if (indexPath.row == 1)
     {
@@ -114,8 +110,11 @@
     }
     else if (indexPath.row == 6)
     {
-        SettingsViewController *settingsViewController = [[AppDelegate storyBoard] instantiateViewControllerWithIdentifier:@"SettingsViewController"];
-        frontViewController = settingsViewController;
+//        SettingsViewController *settingsViewController = [[AppDelegate storyBoard] instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+//        frontViewController = settingsViewController;
+        
+        EventDetailsViewController *eventDetailsViewController = [[AppDelegate storyBoard] instantiateViewControllerWithIdentifier:@"EventDetailsViewController"];
+        frontViewController = eventDetailsViewController;
     }
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:frontViewController];

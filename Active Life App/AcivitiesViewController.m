@@ -17,7 +17,6 @@
 
 @property (nonatomic, strong) NSDictionary *responseDict;
 @property (nonatomic, strong) NSMutableArray *arrEvents;
-
 @end
 
 
