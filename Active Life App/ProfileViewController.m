@@ -15,7 +15,7 @@
     IBOutlet UISegmentedControl *segmentControl;
     IBOutlet UITableView *eventTableView;
 }
-
+-(IBAction)btnLogOutPressed:(id)sender;
 -(IBAction)btnMenuPressed:(id)sender;
 @property (nonatomic, strong) NSDictionary *responseDict;
 @property (nonatomic, strong) NSMutableArray *arrEvents;
@@ -58,6 +58,11 @@
 -(IBAction)btnMenuPressed:(id)sender{
     SWRevealViewController *revealController = [self revealViewController];
     [revealController revealToggle:nil];
+}
+
+-(IBAction)btnLogOutPressed:(id)sender{
+    UINavigationController *navController =(UINavigationController *) [UIApplication sharedApplication].keyWindow.rootViewController;
+    [navController popViewControllerAnimated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

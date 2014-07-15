@@ -14,7 +14,7 @@
     IBOutlet UITableView *tblActivities;
 }
 -(IBAction)btnMenuPressed:(id)sender;
-
+-(IBAction)btnLogOutPressed:(id)sender;
 @property (nonatomic, strong) NSDictionary *responseDict;
 @property (nonatomic, strong) NSMutableArray *arrEvents;
 @end
@@ -54,6 +54,11 @@
 -(IBAction)btnMenuPressed:(id)sender{
     SWRevealViewController *revealController = [self revealViewController];
     [revealController revealToggle:nil];
+}
+
+-(IBAction)btnLogOutPressed:(id)sender{
+    UINavigationController *navController =(UINavigationController *) [UIApplication sharedApplication].keyWindow.rootViewController;
+    [navController popViewControllerAnimated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

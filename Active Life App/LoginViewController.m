@@ -78,6 +78,7 @@
     mainRevealController.delegate = self;
     self.navigationController.navigationBarHidden = YES;
     [self.navigationController pushViewController:mainRevealController animated:YES];
+//    mainRevealController = nil;
 }
 
 -(IBAction)btnSignUpPressed:(id)sender{

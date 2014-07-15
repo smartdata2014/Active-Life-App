@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AddressBook/AddressBook.h>
+#import <AddressBookUI/AddressBookUI.h>
 
-@interface FriendsListViewController : UIViewController
+
+@interface FriendsListViewController : UIViewController<ABPeoplePickerNavigationControllerDelegate>
 
 @end

@@ -14,6 +14,7 @@
 
 -(IBAction)btnMenuPressed:(id)sender;
 -(IBAction)btnRespondRequestPressed:(id)sender;
+-(IBAction)btnBackPressed:(id)sender;
 @property (nonatomic, strong) NSDictionary *responseDict;
 @end
 
@@ -55,6 +56,10 @@
     [revealController revealToggle:nil];
 }
 
+-(IBAction)btnBackPressed:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(IBAction)btnRespondRequestPressed:(id)sender{
     if ([sender tag]==10) {
         NSLog(@"Respond");
@@ -83,7 +88,6 @@
     tempLabel.backgroundColor=[UIColor colorWithRed:63.0/255.0 green:80.0/255.0 blue:161.0/255.0 alpha:1.0];
     tempLabel.textColor = [UIColor whiteColor]; //here you can change the text color of header.
     tempLabel.font = [UIFont fontWithName:@"Helvetica" size:18.0];
-
     tempLabel.text = [[[_responseDict valueForKey:@"Friends"] allKeys] objectAtIndex:section];
     [tempView addSubview:tempLabel];
     return tempView;

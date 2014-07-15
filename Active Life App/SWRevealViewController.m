@@ -60,7 +60,6 @@ typedef enum
     _dragging = NO;
 }
 
-
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesMoved:touches withEvent:event];
@@ -276,7 +275,8 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     CGRect bounds = self.bounds;
     
     CGFloat rearRevealWidth = _c.rearViewRevealWidth;
-    if ( rearRevealWidth < 0) rearRevealWidth = bounds.size.width + _c.rearViewRevealWidth;
+    
+    if (rearRevealWidth < 0) rearRevealWidth = bounds.size.width + _c.rearViewRevealWidth;
     
     CGFloat rearXLocation = scaledValue(xLocation, -_c.rearViewRevealDisplacement, 0, 0, rearRevealWidth);
     
@@ -841,7 +841,6 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
         _rightViewPosition = frontViewPosition;
         return;
     }
-    
     [self _dispatchSetFrontViewPosition:frontViewPosition animated:animated];
 }
 

@@ -41,6 +41,11 @@
     [revealController revealToggle:nil];
 }
 
+-(IBAction)btnLogOutPressed:(id)sender{
+    UINavigationController *navController =(UINavigationController *) [UIApplication sharedApplication].keyWindow.rootViewController;
+    [navController popViewControllerAnimated:YES];
+}
+
 /*
 #pragma mark - Navigation
 

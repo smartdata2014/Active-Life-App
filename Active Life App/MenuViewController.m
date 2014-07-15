@@ -76,12 +76,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SWRevealViewController *revealController = [self revealViewController];
-    
     UIViewController *frontViewController;
     if(indexPath.row == 0)
     {
-        HomeViewController *homeViewController= [[AppDelegate storyBoard] instantiateViewControllerWithIdentifier:@"HomeViewController"];
-        frontViewController = homeViewController;
+//        HomeViewController *homeViewController= [[AppDelegate storyBoard] instantiateViewControllerWithIdentifier:@"HomeViewController"];
+//        frontViewController = homeViewController;
+        FriendsListViewController *friendsListViewController= [[AppDelegate storyBoard] instantiateViewControllerWithIdentifier:@"FriendsListViewController"];
+        frontViewController = friendsListViewController;
     }
     else if (indexPath.row == 1)
     {

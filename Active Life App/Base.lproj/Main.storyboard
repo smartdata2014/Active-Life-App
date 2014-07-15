@@ -42,7 +42,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-335" y="-342"/>
+            <point key="canvasLocation" x="-335" y="-370"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="Cta-2S-fdk">
@@ -79,7 +79,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="KZu-HT-os8"/>
                                     <barButtonItem title="LogOut" id="aG5-DZ-c8Z">
                                         <connections>
-                                            <action selector="btnLogOutPressed:" destination="yMS-2h-da9" id="DvQ-tw-sKW"/>
+                                            <action selector="btnLogOutPressed:" destination="9kZ-a4-63t" id="LPt-Ga-G7h"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -212,7 +212,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="zel-pv-HVh"/>
                                     <barButtonItem title="Back" id="XYb-8z-ZoU">
                                         <connections>
-                                            <action selector="btnLogOutPressed:" destination="yMS-2h-da9" id="ItB-VG-dVl"/>
+                                            <action selector="btnBackPressed:" destination="eh7-kO-7v1" id="c3N-vD-WDE"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -349,7 +349,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="08t-L5-VOw"/>
                                     <barButtonItem title="LogOut" id="3GO-hl-GsI">
                                         <connections>
-                                            <action selector="btnLogOutPressed:" destination="yMS-2h-da9" id="blc-2x-RhZ"/>
+                                            <action selector="btnLogOutPressed:" destination="Fds-TQ-o71" id="RIM-LR-WaY"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -443,7 +443,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="eNh-L3-rNJ"/>
                                     <barButtonItem title="LogOut" id="Dl6-dZ-t8q">
                                         <connections>
-                                            <action selector="btnLogOutPressed:" destination="yMS-2h-da9" id="E2t-ac-geZ"/>
+                                            <action selector="btnLogOutPressed:" destination="RgF-AO-HXc" id="wtW-cW-yXz"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -735,7 +735,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="nEa-da-CT6"/>
                                     <barButtonItem title="LogOut" id="ofJ-ch-dlA">
                                         <connections>
-                                            <action selector="btnLogOutPressed:" destination="yMS-2h-da9" id="sup-sC-RXO"/>
+                                            <action selector="btnLogOutPressed:" destination="GGo-n3-7L1" id="jej-Iz-ehR"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -814,7 +814,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Npa-61-3tb"/>
                                     <barButtonItem title="LogOut" id="CHB-a1-mcO">
                                         <connections>
-                                            <action selector="btnLogOutPressed:" destination="yMS-2h-da9" id="jAL-rz-dac"/>
+                                            <action selector="btnLogOutPressed:" destination="bXX-5n-rnA" id="hqH-fL-fLr"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -928,6 +928,9 @@
                                     <segment title="Private"/>
                                     <segment title="Public"/>
                                 </segments>
+                                <connections>
+                                    <action selector="btnActionSegmentControl1:" destination="bXX-5n-rnA" eventType="valueChanged" id="2xh-fV-Ij2"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bk9-5l-0Ph">
                                 <rect key="frame" x="66" y="292" width="187" height="29"/>
@@ -937,6 +940,9 @@
                                     <segment title="Female"/>
                                     <segment title="Both"/>
                                 </segments>
+                                <connections>
+                                    <action selector="btnActionSegmentControl2:" destination="bXX-5n-rnA" eventType="valueChanged" id="fpA-8A-eTD"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flq-xJ-uqP">
                                 <rect key="frame" x="89" y="528" width="143" height="30"/>
@@ -945,10 +951,21 @@
                                 <state key="normal" title="Create Event">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnCreatePressed:" destination="bXX-5n-rnA" eventType="touchUpInside" id="PfZ-XN-7uJ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="segmentControl1" destination="QMa-yj-j0y" id="abc-aM-eAA"/>
+                        <outlet property="segmentControl2" destination="bk9-5l-0Ph" id="kRB-gr-ffF"/>
+                        <outlet property="txtActivity" destination="zqc-EY-fpz" id="Bjt-Yw-cov"/>
+                        <outlet property="txtName" destination="tHV-0K-Zlu" id="hyp-N6-Ds0"/>
+                        <outlet property="txtPlace" destination="J9z-Bv-11k" id="Jif-Az-O1D"/>
+                        <outlet property="txtTime" destination="tst-0y-HMO" id="dLi-gL-67s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YZ1-6p-WmH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -970,9 +987,9 @@
                                 <rect key="frame" x="0.0" y="84" width="320" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                    <segment title="Third"/>
+                                    <segment title="Friends"/>
+                                    <segment title="PhoneBook"/>
+                                    <segment title="Search" width="106"/>
                                 </segments>
                                 <connections>
                                     <action selector="SegmentControlActions:" destination="0TV-Eg-E3v" eventType="valueChanged" id="Ytk-aB-Oil"/>
@@ -1015,6 +1032,7 @@
                     </view>
                     <connections>
                         <outlet property="friendsTableView" destination="4ww-fu-q1Y" id="8QK-ha-QzJ"/>
+                        <outlet property="segmentControl" destination="H48-ow-lS3" id="giW-sT-CWp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="94d-X4-2hM" userLabel="First Responder" sceneMemberID="firstResponder"/>

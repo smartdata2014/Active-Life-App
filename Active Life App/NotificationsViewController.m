@@ -10,6 +10,7 @@
 
 @interface NotificationsViewController ()
 -(IBAction)btnMenuPressed:(id)sender;
+-(IBAction)btnLogOutPressed:(id)sender;
 @property (nonatomic, strong) NSMutableArray *arrEvents;
 @end
 
@@ -43,6 +44,11 @@
     [revealController revealToggle:nil];
 }
 
+-(IBAction)btnLogOutPressed:(id)sender{
+    UINavigationController *navController =(UINavigationController *) [UIApplication sharedApplication].keyWindow.rootViewController;
+    [navController popViewControllerAnimated:YES];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -62,13 +68,16 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 
-    UILabel *senderLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 11, 220, 20)];
+    UILabel *senderLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 220, 20)];
     senderLabel.font = [UIFont boldSystemFontOfSize:15.0];
     senderLabel.text = [_arrEvents objectAtIndex:indexPath.row];
     [cell.contentView addSubview:senderLabel];
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 80.0;
+}
 
 /*
 #pragma mark - Navigation
