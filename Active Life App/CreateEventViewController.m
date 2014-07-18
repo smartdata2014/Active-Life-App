@@ -9,15 +9,17 @@
 #import "CreateEventViewController.h"
 #import <EventKit/EventKit.h>
 #import <EventKitUI/EventKitUI.h>
+#import "Person.h"
 
-@interface CreateEventViewController ()<SWRevealViewControllerDelegate>
+@interface CreateEventViewController ()<SWRevealViewControllerDelegate,MFMailComposeViewControllerDelegate>
 {
-    IBOutlet UISegmentedControl *segmentControl1, *segmentControl2;
+    IBOutlet UISegmentedControl *segmentControl;
     IBOutlet UITextField *txtName, *txtTime, *txtPlace, *txtActivity;
+    IBOutlet UITableView *tableFriends;
 }
-
--(IBAction)btnActionSegmentControl1:(id)sender;
--(IBAction)btnActionSegmentControl2:(id)sender;
+@property (nonatomic, strong) NSMutableArray *arrFriends;
+@property (nonatomic, strong) ABPeoplePickerNavigationController *addressBookController;
+-(IBAction)btnActionSegmentControl:(id)sender;
 -(IBAction)btnMenuPressed:(id)sender;
 -(IBAction)btnCreatePressed:(id)sender;
 
@@ -26,6 +28,7 @@
 
 @implementation CreateEventViewController
 @synthesize eventStoreCalendarIdentifier;
+int segmentIndex;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,7 +47,381 @@
     [_responseDict setObject:@"Private" forKey:@"Privacy"];
     [_responseDict setObject:@"Male" forKey:@"Gender"];
     
+    _arrFriends = [[NSMutableArray alloc] init];
+    FBRequest* friendsRequest = [FBRequest requestForMyFriends];
+    [friendsRequest startWithCompletionHandler: ^(FBRequestConnection *connection,
+                                                  NSDictionary* result,
+                                                  NSError *error) {
+        _arrFriends = [result objectForKey:@"data"];
+        NSLog(@"friends..%@",_arrFriends);
+        NSLog(@"Found: %i friends", _arrFriends.count);
+        
+        for (NSDictionary<FBGraphUser>* friend in _arrFriends) {
+            NSLog(@"I have a friend named %@ with id %@", friend.name, friend.id);
+        }
+    }];
+
+    NSLog(@"_arrFriends...%@",_arrFriends);
     // Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self getFacebookFriends];
+}
+
+-(void)reloadTableView{
+    [tableFriends reloadData];
+}
+
+-(IBAction)btnActionSegmentControl:(id)sender{
+    
+    segmentIndex = [segmentControl selectedSegmentIndex];
+    if (segmentIndex == 0) {
+        [self getFacebookFriends];
+      }
+    else if (segmentIndex == 1)
+    {
+        [self getContactFromAddressBook];
+    }
+       [tableFriends reloadData];
+}
+
+-(void)getFacebookFriends{
+    _arrFriends = [[NSMutableArray alloc] init];
+    FBRequest* friendsRequest = [FBRequest requestForMyFriends];
+    [friendsRequest startWithCompletionHandler: ^(FBRequestConnection *connection,
+                                                  NSDictionary* result,
+                                                  NSError *error) {
+        _arrFriends = [result objectForKey:@"data"];
+        NSLog(@"friends..%@",_arrFriends);
+        NSLog(@"Found: %i friends", _arrFriends.count);
+        for (NSDictionary<FBGraphUser>* friend in _arrFriends) {
+            NSLog(@"I have a friend named %@ with id %@", friend.name, friend.id);
+        }
+    }];
+    [self performSelector:@selector(reloadTableView) withObject:self afterDelay:2.0];
+
+}
+
+
+-(void)getContactFromAddressBook
+{
+    _arrFriends = [[NSMutableArray alloc]init];
+    BOOL isAcessed;
+    CFErrorRef *error = nil;
+    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, error);
+    
+    __block BOOL accessGranted = NO;
+    if (ABAddressBookRequestAccessWithCompletion != NULL) { // we're on iOS 6
+        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+        ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
+            accessGranted = granted;
+            dispatch_semaphore_signal(sema);
+        });
+        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    }
+    else { // we're on iOS 5 or older
+        accessGranted = YES;
+    }
+    
+    if (accessGranted) {
+        
+#ifdef DEBUG
+        NSLog(@"Fetching contact info ----> ");
+#endif
+        isAcessed = accessGranted;
+        if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined) {
+            // The user has previously given access, add the contact
+            isAcessed = YES;
+            NSArray *allContacts = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBook);
+            
+            //        CFArrayRef allPeople  = ABAddressBookCopyArrayOfAllPeople(addressBook);
+            CFIndex count = CFArrayGetCount((__bridge CFArrayRef)(allContacts));
+            
+            //To generate array of imported data;
+            for (int i = 0; i < count; i++)
+            {
+                Person *person = [[Person alloc] init];
+                
+                ABRecordRef contactPerson = (__bridge ABRecordRef)allContacts[i];
+                
+                NSString *firstName = (__bridge_transfer NSString *)ABRecordCopyValue(contactPerson, kABPersonFirstNameProperty);
+                NSString *lastName =  (__bridge_transfer NSString *)ABRecordCopyValue(contactPerson, kABPersonLastNameProperty);
+                //NSString *phoneNo =  (__bridge_transfer NSString *)ABRecordCopyValue(contactPerson, kABPersonPhoneProperty);
+                
+                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+                {
+                    
+                    ABMultiValueRef phones = ABRecordCopyValue(contactPerson, kABPersonPhoneProperty);
+                    for(CFIndex j = 0; j < ABMultiValueGetCount(phones); j++)
+                    {
+                        //                    CFStringRef phoneNumberRef = ABMultiValueCopyValueAtIndex(phones, j);
+                        //                    CFStringRef locLabel = ABMultiValueCopyLabelAtIndex(phones, j);
+                        //                    NSString *phoneLabel = (__bridge NSString *) ABAddressBookCopyLocalizedLabel(locLabel);
+                        //                    NSString *phoneNumber = (__bridge NSString *)phoneNumberRef;
+                        //                    person.phoneNumber = phoneNumber;
+                        //                    CFRelease(phoneNumberRef);
+                        //                    CFRelease(locLabel);
+                        //                    NSLog(@"  - %@ (%@)", phoneNumber, phoneLabel);
+                        
+                        
+                        //                    CFStringRef locLabel1 = ABMultiValueCopyLabelAtIndex(phones, j);
+                        //
+                        //                    NSString *phoneLabel1 =(__bridge NSString*) ABAddressBookCopyLocalizedLabel(locLabel1);
+                        //                    CFRelease(locLabel1);
+                        
+                        NSString* phoneNumber = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phones, j);
+                        
+                        if (phoneNumber != nil || phoneNumber.length >0)
+                        {
+                            person.phoneNumber = phoneNumber;
+                        }
+                        
+                        NSLog(@"phoneNumber %@ )", phoneNumber);
+                    }
+                }
+                
+                NSString *fullName;
+                
+                if (firstName && lastName )
+                {
+                    fullName = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+                }
+                else if (firstName)
+                {
+                    fullName = [NSString stringWithFormat:@"%@", firstName];
+                }
+                else if (lastName)
+                {
+                    fullName = [NSString stringWithFormat:@"%@", lastName];
+                }
+                else
+                {
+                    fullName = nil;
+                }
+                
+                NSLog(@"person details are  = %@ firstName = %@ lastName=%@", fullName,firstName, lastName);
+                
+                if (firstName)
+                {
+                    person.firstName = firstName;
+                }
+                if (lastName)
+                {
+                    person.lastName = lastName;
+                }
+                if (fullName != nil)
+                {
+                    person.fullName = fullName;
+                }
+                
+                NSLog(@"person.homeEmail = %@ ", person.homeEmail);
+                NSLog(@"person.firstName = %@ ", person.firstName);
+                NSLog(@"person.lastName = %@ ", person.lastName);
+                NSLog(@"person.fullName = %@ ", person.fullName);
+                NSLog(@"person.phoneNumber = %@ ", person.phoneNumber);
+                
+                ABMultiValueRef emails = ABRecordCopyValue(contactPerson, kABPersonEmailProperty);
+                
+                NSUInteger j = 0;
+                for (j = 0; j < ABMultiValueGetCount(emails); j++)
+                {
+                    NSString *email = (__bridge_transfer NSString *)ABMultiValueCopyValueAtIndex(emails, j);
+                    if (j == 0)
+                    {
+                        if (email)
+                        {
+                            person.homeEmail = email;
+                        }
+                        NSLog(@"person.homeEmail = %@ ", person.homeEmail);
+                    }
+                    
+                    else if (j==1)
+                        person.workEmail = email;
+                }
+                
+                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+                {
+                    if (person.phoneNumber != nil)
+                    {
+                        if (person.phoneNumber != nil)
+                        {
+                            if (person.fullName != nil)
+                            {
+                                [_arrFriends addObject:person];
+                            }
+                        }
+                    }
+                    
+                }
+                else
+                {
+                    if (person.homeEmail != nil)
+                    {
+                        if (person.fullName != nil)
+                        {
+                            [_arrFriends addObject:person];
+                        }
+                    }
+                }
+                
+                //clientObject = nil;
+            }
+            NSLog(@"data collection :- %@",_arrFriends);
+            [tableFriends reloadData];
+        }
+        else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized) {
+            // The user has previously given access, add the contact
+            isAcessed = YES;
+            NSArray *allContacts = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBook);
+            
+            //        CFArrayRef allPeople  = ABAddressBookCopyArrayOfAllPeople(addressBook);
+            CFIndex count = CFArrayGetCount((__bridge CFArrayRef)(allContacts));
+            
+            //To generate array of imported data;
+            for (int i = 0; i < count; i++)
+            {
+                Person *person = [[Person alloc] init];
+                
+                ABRecordRef contactPerson = (__bridge ABRecordRef)allContacts[i];
+                
+                NSString *firstName = (__bridge_transfer NSString *)ABRecordCopyValue(contactPerson, kABPersonFirstNameProperty);
+                NSString *lastName =  (__bridge_transfer NSString *)ABRecordCopyValue(contactPerson, kABPersonLastNameProperty);
+                //NSString *phoneNo =  (__bridge_transfer NSString *)ABRecordCopyValue(contactPerson, kABPersonPhoneProperty);
+                
+                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+                {
+                    
+                    ABMultiValueRef phones = ABRecordCopyValue(contactPerson, kABPersonPhoneProperty);
+                    for(CFIndex j = 0; j < ABMultiValueGetCount(phones); j++)
+                    {
+                        //                    CFStringRef phoneNumberRef = ABMultiValueCopyValueAtIndex(phones, j);
+                        //                    CFStringRef locLabel = ABMultiValueCopyLabelAtIndex(phones, j);
+                        //                    NSString *phoneLabel = (__bridge NSString *) ABAddressBookCopyLocalizedLabel(locLabel);
+                        //                    NSString *phoneNumber = (__bridge NSString *)phoneNumberRef;
+                        //                    person.phoneNumber = phoneNumber;
+                        //                    CFRelease(phoneNumberRef);
+                        //                    CFRelease(locLabel);
+                        //                    NSLog(@"  - %@ (%@)", phoneNumber, phoneLabel);
+                        
+                        
+                        //                    CFStringRef locLabel1 = ABMultiValueCopyLabelAtIndex(phones, j);
+                        //
+                        //                    NSString *phoneLabel1 =(__bridge NSString*) ABAddressBookCopyLocalizedLabel(locLabel1);
+                        //                    CFRelease(locLabel1);
+                        
+                        
+                        NSString* phoneNumber = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phones, j);
+                        
+                        if (phoneNumber != nil || phoneNumber.length >0)
+                        {
+                            person.phoneNumber = phoneNumber;
+                        }
+                        
+                        NSLog(@"phoneNumber %@ )", phoneNumber);
+                    }
+                    
+                }
+                
+                NSString *fullName;
+                
+                if (firstName && lastName )
+                {
+                    fullName = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+                }
+                else if (firstName)
+                {
+                    fullName = [NSString stringWithFormat:@"%@", firstName];
+                }
+                else if (lastName)
+                {
+                    fullName = [NSString stringWithFormat:@"%@", lastName];
+                }
+                else
+                {
+                    fullName = nil;
+                }
+                
+                
+                NSLog(@"person details are  = %@ firstName = %@ lastName=%@", fullName,firstName, lastName);
+                
+                if (firstName)
+                {
+                    person.firstName = firstName;
+                }
+                if (lastName)
+                {
+                    person.lastName = lastName;
+                }
+                if (fullName != nil)
+                {
+                    person.fullName = fullName;
+                }
+                
+                NSLog(@"person.homeEmail = %@ ", person.homeEmail);
+                NSLog(@"person.firstName = %@ ", person.firstName);
+                NSLog(@"person.lastName = %@ ", person.lastName);
+                NSLog(@"person.fullName = %@ ", person.fullName);
+                NSLog(@"person.phoneNumber = %@ ", person.phoneNumber);
+                
+                ABMultiValueRef emails = ABRecordCopyValue(contactPerson, kABPersonEmailProperty);
+                
+                NSUInteger j = 0;
+                for (j = 0; j < ABMultiValueGetCount(emails); j++)
+                {
+                    NSString *email = (__bridge_transfer NSString *)ABMultiValueCopyValueAtIndex(emails, j);
+                    if (j == 0)
+                    {
+                        if (email)
+                        {
+                            person.homeEmail = email;
+                        }
+                        NSLog(@"person.homeEmail = %@ ", person.homeEmail);
+                    }
+                    
+                    else if (j==1)
+                        person.workEmail = email;
+                }
+                [_arrFriends addObject:person];
+                
+                //                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+                //                {
+                //                    if (person.phoneNumber != nil)
+                //                    {
+                //                        if (person.phoneNumber != nil)
+                //                        {
+                //                            if (person.fullName != nil)
+                //                            {
+                //                                [_arrFriends addObject:person];
+                //                            }
+                //                        }
+                //                    }
+                //
+                //                }
+                //                else
+                //                {
+                //                    if (person.homeEmail != nil)
+                //                    {
+                //                        if (person.fullName != nil)
+                //                        {
+                //                            [_arrFriends addObject:person];
+                //                        }
+                //                    }
+                //                }
+                
+                //clientObject = nil;
+            }
+            NSLog(@"data collection :- %@",_arrFriends);
+            [tableFriends reloadData];
+        }
+    } else {
+#ifdef DEBUG
+        //        UIAlertView *accssAlert = [[UIAlertView alloc]initWithTitle:AlertTitle message:@"There is no permession to access contacts. Go to settings -> Privacy -> Enable contacts" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        //        [accssAlert show];
+        
+        NSLog(@"Cannot fetch Contacts :( ");
+#endif
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,22 +442,75 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"CreateEventCells";
     UITableViewCell *cell;
+    
     if (cell==nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 
     UILabel *senderLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 11, 220, 20)];
     senderLabel.font = [UIFont boldSystemFontOfSize:15.0];
-    senderLabel.text = [NSString stringWithFormat:@"Facebook"];
+    if (segmentIndex == 0) {
+//        senderLabel.text = [[_arrFriends objectAtIndex:indexPath.row] valueForKey:@"name"];
+        senderLabel.text = @"Friedns";
+    }
+    else{
+        Person *person = [_arrFriends objectAtIndex:indexPath.row];
+        senderLabel.text = [NSString stringWithFormat:@"%@",person.firstName];
+    }
     [cell.contentView addSubview:senderLabel];
+
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(270, 05, 20, 20)];
+    [imageView setImage:[UIImage imageNamed:@"Home.png"]];
+    
+    UITableViewCell *cell = (UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    
+    NSLog(@"cell.contentView...%@",[cell.contentView subviews]);
+
+    if ([[cell.contentView subviews] count]>1 ) {
+        if ([[[cell.contentView subviews] objectAtIndex:1] isKindOfClass:[UIImageView class]]) {
+            UIImageView *image = (UIImageView *)[cell.contentView.subviews objectAtIndex:1];
+            [image removeFromSuperview];
+        }
+        NSLog(@"Conmtains Image");
+    }
+    else{
+        [cell.contentView addSubview:imageView];
+    }
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -88,31 +518,6 @@
     return YES;
 }
 
--(IBAction)btnActionSegmentControl1:(id)sender{
-    if ([segmentControl1 selectedSegmentIndex]==0) {
-        NSLog(@"Private");
-        [_responseDict setObject:@"Private" forKey:@"Privacy"];
-    }
-    else if ([segmentControl1 selectedSegmentIndex]==1){
-        NSLog(@"Public");
-        [_responseDict setObject:@"Public" forKey:@"Privacy"];
-    }
-}
-
--(IBAction)btnActionSegmentControl2:(id)sender{
-    if ([segmentControl2 selectedSegmentIndex]==0) {
-        NSLog(@"Male");
-        [_responseDict setObject:@"Male" forKey:@"Gender"];
-    }
-    else if ([segmentControl2 selectedSegmentIndex]==1){
-        NSLog(@"Female");
-        [_responseDict setObject:@"Female" forKey:@"Gender"];
-    }
-    else{
-        NSLog(@"Both");
-        [_responseDict setObject:@"Both" forKey:@"Gender"];
-    }
-}
 
 -(IBAction)btnCreatePressed:(id)sender{
     [_responseDict setObject:txtName.text forKey:@"Name"];
@@ -134,9 +539,7 @@
     [postDict setObject:@"5" forKey:@"month"];
     [postDict setObject:@"2014" forKey:@"year"];
     [postDict setObject:@"14" forKey:@"trainer_id"];
-    
-//    NSDictionary *returnDict = [[WebserviceCall sharedInstance]callWebserviceWithIdentifier:@"GetAppointments" andArguments:postDict];
-    
+
     NSDictionary *returnDict = [[NSDictionary alloc] init];
     
     if ([[returnDict objectForKey:@"success"] boolValue]) {
@@ -266,6 +669,7 @@
         }
     }
 }
+
 
 
 /*

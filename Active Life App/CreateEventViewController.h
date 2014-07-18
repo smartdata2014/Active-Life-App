@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+#import <AddressBook/AddressBook.h>
+#import <AddressBookUI/AddressBookUI.h>
 
-@interface CreateEventViewController : UIViewController
+@interface CreateEventViewController : UIViewController<ABPeoplePickerNavigationControllerDelegate>
 
 
 @property(nonatomic, strong) NSString *eventStoreCalendarIdentifier;

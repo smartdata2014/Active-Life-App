@@ -18,7 +18,7 @@
 //    // Override point for customization after application launch.
 //    self.window.backgroundColor = [UIColor whiteColor];
 //    [self.window makeKeyAndVisible];
-    [GMSServices provideAPIKey:@"AIzaSyDZXoco2krEdm_ldNM3um7OioCn9-L_cRk"];
+//    [GMSServices provideAPIKey:@"AIzaSyDZXoco2krEdm_ldNM3um7OioCn9-L_cRk"];
     return YES;
 }
 							
@@ -51,12 +51,12 @@
 
 +(id)storyBoard{
     UIStoryboard *storyboard;
-    if (IS_IPHONE5) {
+//    if (IS_IPHONE5) {
         storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    }
-    else{
-        storyboard = [UIStoryboard storyboardWithName:@"Main_3.5" bundle: nil];
-    }
+//    }
+//    else{
+//        storyboard = [UIStoryboard storyboardWithName:@"Main_3.5" bundle: nil];
+//    }
     return storyboard;
 }
 

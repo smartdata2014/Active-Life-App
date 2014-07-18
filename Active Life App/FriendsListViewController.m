@@ -60,6 +60,7 @@ int segmentIndex;
                          [self addSearchBarToFriendPickerView];
                      }
      ];
+
     // Do any additional setup after loading the view.
 }
 
@@ -185,7 +186,6 @@ int segmentIndex;
     return YES;
 }
 
-
 - (void) handlePickerDone
 {
     [self dismissModalViewControllerAnimated:YES];
@@ -298,7 +298,6 @@ int segmentIndex;
                         
                         NSLog(@"phoneNumber %@ )", phoneNumber);
                     }
-                    
                 }
                 
                 NSString *fullName;

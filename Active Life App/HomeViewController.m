@@ -9,7 +9,7 @@
 #import "HomeViewController.h"
 #import "MDDirectionService.h"
 
-@interface HomeViewController ()<SWRevealViewControllerDelegate,GMSMapViewDelegate>
+@interface HomeViewController ()<SWRevealViewControllerDelegate,GMSMapViewDelegate,CLLocationManagerDelegate>
 {
     IBOutlet UISegmentedControl *segmentControl;
     IBOutlet UITableView *eventTableView;
@@ -19,7 +19,7 @@
 //  IBOutlet UIBarButtonItem* revealButtonItem;
 }
 
-@property (nonatomic, strong) NSDictionary *responseDict;
+@property (strong, nonatomic) NSDictionary *responseDict;
 @property (strong, nonatomic) NSMutableArray *waypoints;
 @property (strong, nonatomic) NSMutableArray *waypointStrings;
 
@@ -65,10 +65,15 @@
 }
 
 -(void)intializeMap{
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.86
-                                                            longitude:151.20
-                                                                 zoom:6];
     
+    CLLocationManager *location = [[CLLocationManager alloc] init];
+    location.delegate = self;
+    [location startUpdatingLocation];
+    
+    [GMSServices provideAPIKey:@"AIzaSyDZXoco2krEdm_ldNM3um7OioCn9-L_cRk"];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:[[[[_responseDict valueForKey:@"Events"] objectAtIndex:1] valueForKey:@"lat"] doubleValue]
+                                                            longitude:[[[[_responseDict valueForKey:@"Events"] objectAtIndex:1] valueForKey:@"long"] doubleValue]
+                                                                 zoom:5];
     mapView_ = [GMSMapView mapWithFrame:CGRectMake(0, 65, 320, 505) camera:camera];
     mapView_.myLocationEnabled = YES;
     mapView_.mapType = kGMSTypeNormal;
@@ -81,28 +86,50 @@
     mapView_.delegate = self;
     mapView_.hidden = YES;
     // Creates a marker in the center of the map.
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(-33.86, 151.20);
-    marker.title = @"Sydney";
-    marker.snippet = @"Australia";
-    marker.map = mapView_;
+//    GMSMarker *marker = [[GMSMarker alloc] init];
+//    marker.position = CLLocationCoordinate2DMake(22.25,76.02);
+//    marker.title = @"Indore";
+//    marker.snippet = @"India";
+//    marker.map = mapView_;
     [self.view addSubview:mapView_];
 //  [self.view bringSubviewToFront:mapView_];
     [self placeMarkers];
 }
 
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+    NSLog(@"locations...%@",locations);
+}
+
 -(void)placeMarkers
 {
     // Creates a marker in the center of the map
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(35.995602, -78.902153);
-    marker.title = @"PopUp HQ";
-    marker.snippet = @"Durham, NC";
-    marker.icon = [GMSMarker markerImageWithColor:[UIColor blueColor]];
-    //    marker.icon = [UIImage imageNamed:@"someicon.png"];
-    marker.opacity = 0.9;
-    //    marker.flat = YES;
-    marker.map = mapView_;
+    for (int i=0; i<[[_responseDict valueForKey:@"Events"] count]; i++) {
+        GMSMarker *marker = [[GMSMarker alloc] init];
+        marker.position = CLLocationCoordinate2DMake([[[[_responseDict valueForKey:@"Events"] objectAtIndex:i] valueForKey:@"lat"] doubleValue], [[[[_responseDict valueForKey:@"Events"] objectAtIndex:i] valueForKey:@"long"] doubleValue]);
+        marker.title = [[[_responseDict valueForKey:@"Events"] objectAtIndex:i] valueForKey:@"Location"];
+        marker.snippet = @"U.S.A";
+        marker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
+        marker.opacity = 0.9;
+        marker.map = mapView_;
+    }
+}
+
+- (UIView *) mapView:(GMSMapView *)  mapView markerInfoWindow: (GMSMarker *) marker
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 60)];
+    view.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.7];
+    view.layer.cornerRadius = 5.0;
+    
+    UILabel *labelEvent = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 180, 20)];
+    labelEvent.textColor = [UIColor whiteColor];
+    labelEvent.text = @"Event 1";
+    [view addSubview:labelEvent];
+    
+    UILabel *labelLocation = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 180, 20)];
+    labelLocation.textColor = [UIColor whiteColor];
+    labelLocation.text = @"Location 1";
+    [view addSubview:labelLocation];
+    return view;
 }
 
 -(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
@@ -225,22 +252,27 @@
     }
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
     UILabel *senderLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 11, 150, 20)];
     senderLabel.font = [UIFont boldSystemFontOfSize:18.0];
     senderLabel.text = [[[_responseDict valueForKey:@"Events"]objectAtIndex:indexPath.row] valueForKey:@"event_name"];
+    senderLabel.textColor = [UIColor darkGrayColor];
     
     UILabel *locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 40, 80, 20)];
     locationLabel.font = [UIFont boldSystemFontOfSize:15.0];
     locationLabel.text = [[[_responseDict valueForKey:@"Events"]objectAtIndex:indexPath.row] valueForKey:@"Location"];
+    locationLabel.textColor = [UIColor darkGrayColor];
 
     UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 40, 100, 20)];
     timeLabel.font = [UIFont boldSystemFontOfSize:15.0];
     timeLabel.text = [[[_responseDict valueForKey:@"Events"]objectAtIndex:indexPath.row] valueForKey:@"Time"];
+    timeLabel.textColor = [UIColor darkGrayColor];
 
+    UIImageView *eventImgView = [[UIImageView alloc] initWithFrame:CGRectMake(250, 16, 40, 40)];
+    eventImgView.image = [UIImage imageNamed:@"Home.png"];
+    
     [cell.contentView addSubview:senderLabel];
     [cell.contentView addSubview:locationLabel];
-    [cell.contentView addSubview:timeLabel];
+    [cell.contentView addSubview:eventImgView];
     return cell;
 }
 

@@ -31,6 +31,26 @@
 }
 
 -(void)goToLogin{
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:14.0/255.0 green:112.0/255.0 blue:220.0 /255.0 alpha:1.0];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    NSDictionary *normalAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      [UIFont fontWithName:@"Helvetica light" size:13], NSFontAttributeName,
+                                      nil];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:normalAttributes
+                                                forState:UIControlStateNormal];
+    [[UINavigationBar appearance] setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIColor whiteColor],
+      NSForegroundColorAttributeName,
+      [UIColor whiteColor],
+      NSForegroundColorAttributeName,
+      [NSValue valueWithUIOffset:UIOffsetMake(0, -1)],
+      NSForegroundColorAttributeName,
+      [UIFont fontWithName:@"Arial" size:19.0],
+      NSFontAttributeName,
+      nil]];
+    
     LoginViewController *logInViewController = [[AppDelegate storyBoard] instantiateViewControllerWithIdentifier:@"LoginViewController"];
     [self.navigationController pushViewController:logInViewController animated:YES];
 }

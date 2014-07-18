@@ -113,14 +113,14 @@
     {
 //        SettingsViewController *settingsViewController = [[AppDelegate storyBoard] instantiateViewControllerWithIdentifier:@"SettingsViewController"];
 //        frontViewController = settingsViewController;
-        
         EventDetailsViewController *eventDetailsViewController = [[AppDelegate storyBoard] instantiateViewControllerWithIdentifier:@"EventDetailsViewController"];
         frontViewController = eventDetailsViewController;
     }
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:frontViewController];
     navigationController.navigationBar.translucent = YES;
-    
+    navigationController.navigationBar.tintColor = [UIColor colorWithRed:14.0/255.0 green:112.0/255.0 blue:220.0 /255.0 alpha:1.0];
+
     [revealController pushFrontViewController:navigationController animated:YES];
 }
 

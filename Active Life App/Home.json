@@ -10,31 +10,43 @@
                "event_name" : "Normal Event",
                "Location" : "California",
                "Time" : "02:00 PM",
+               "lat" : "27.25125",
+               "long" : "72.26325"
                },
                {
                "event_name" : "Normal Event",
                "Location" : "California",
                "Time" : "02:00 PM",
+               "lat" : "27.25125",
+               "long" : "74.26325"
                },
                {
                "event_name" : "Normal Event",
                "Location" : "California",
                "Time" : "02:00 PM",
+               "lat" : "27.25125",
+               "long" : "78.26325"
                },
                {
                "event_name" : "Normal Event",
                "Location" : "California",
                "Time" : "02:00 PM",
+               "lat" : "26.25125",
+               "long" : "69.26325"
                },
                {
                "event_name" : "Normal Event",
                "Location" : "California",
                "Time" : "02:00 PM",
+               "lat" : "30.25125",
+               "long" : "71.26325"
                },
                {
                "event_name" : "Normal Event",
                "Location" : "California",
                "Time" : "02:00 PM",
+               "lat" : "25.25125",
+               "long" : "76.26325"
                }
-               ]
+      ]
 }

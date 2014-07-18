@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A00506D1978EE1F00B59BA1 /* Home.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A00506C1978EE1F00B59BA1 /* Home.png */; };
+		6A012C12197684720060C333 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A012C11197684720060C333 /* MessageUI.framework */; };
 		6A01FC01196A70DF00B5D600 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A01FC00196A70DF00B5D600 /* GoogleMaps.framework */; };
 		6A01FC03196A714C00B5D600 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A01FC02196A714C00B5D600 /* AVFoundation.framework */; };
 		6A01FC05196A715400B5D600 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A01FC04196A715400B5D600 /* CoreData.framework */; };
@@ -79,6 +81,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6A00506C1978EE1F00B59BA1 /* Home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Home.png; sourceTree = "<group>"; };
+		6A012C11197684720060C333 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		6A01FC00196A70DF00B5D600 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		6A01FC02196A714C00B5D600 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6A01FC04196A715400B5D600 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -168,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A012C12197684720060C333 /* MessageUI.framework in Frameworks */,
 				6A4E6A731971189B0032A105 /* EventKit.framework in Frameworks */,
 				6A4E6A741971189B0032A105 /* EventKitUI.framework in Frameworks */,
 				6A1EB035196AA97400CBF7C2 /* UIKit.framework in Frameworks */,
@@ -226,6 +231,7 @@
 		6A079F4E195847490058D230 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A012C11197684720060C333 /* MessageUI.framework */,
 				6AF59E741974E5F400FB6F40 /* FacebookSDK.framework */,
 				6A4E6A711971189B0032A105 /* EventKit.framework */,
 				6A4E6A721971189B0032A105 /* EventKitUI.framework */,
@@ -328,6 +334,7 @@
 		6A079F8C195848690058D230 /* HOME */ = {
 			isa = PBXGroup;
 			children = (
+				6A00506C1978EE1F00B59BA1 /* Home.png */,
 				6A079F8E195848A90058D230 /* HomeViewController.h */,
 				6A079F8F195848A90058D230 /* HomeViewController.m */,
 			);
@@ -561,6 +568,7 @@
 				6AFFE995195B047300E6CF87 /* iOS Simulator Screen shot 25-Jun-2014 9.25.20 AM.png in Resources */,
 				6ABA624F195C534A00F69C18 /* Activities.json in Resources */,
 				6ABA6256195C534A00F69C18 /* SignUp.json in Resources */,
+				6A00506D1978EE1F00B59BA1 /* Home.png in Resources */,
 				6ABA6251195C534A00F69C18 /* EventDetails.json in Resources */,
 				6A079F5A195847490058D230 /* InfoPlist.strings in Resources */,
 				6A09BEEF1963F34A0033BEBA /* Home.json in Resources */,
@@ -740,6 +748,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Active Life App/Active Life App-Prefix.pch";
 				INFOPLIST_FILE = "Active Life App/Active Life App-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -760,6 +769,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Active Life App/Active Life App-Prefix.pch";
 				INFOPLIST_FILE = "Active Life App/Active Life App-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
