@@ -16,19 +16,26 @@
     IBOutlet UISegmentedControl *segmentControl;
     IBOutlet UITextField *txtName, *txtTime, *txtPlace, *txtActivity;
     IBOutlet UITableView *tableFriends;
+    IBOutlet UISwitch *maleSwitch, *femaleSwitch;
+    UIDatePicker *myPicker;
+    UIToolbar *toolbar;
 }
 @property (nonatomic, strong) NSMutableArray *arrFriends;
+@property (nonatomic, strong) NSMutableDictionary *postDict;
 @property (nonatomic, strong) ABPeoplePickerNavigationController *addressBookController;
 -(IBAction)btnActionSegmentControl:(id)sender;
 -(IBAction)btnMenuPressed:(id)sender;
--(IBAction)btnCreatePressed:(id)sender;
+-(IBAction)btnPublishPressed:(id)sender;
+-(IBAction)maleSwitchPressed:(id)sender;
+-(IBAction)femaleSwitchPressed:(id)sender;
+-(IBAction)privateLockPressed:(id)sender;
 
-@property (nonatomic, strong) NSMutableDictionary *responseDict;
 @end
 
 @implementation CreateEventViewController
 @synthesize eventStoreCalendarIdentifier;
 int segmentIndex;
+NSDateFormatter *timeFormatter;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,9 +50,10 @@ int segmentIndex;
 {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
-    _responseDict = [[NSMutableDictionary alloc] init];
-    [_responseDict setObject:@"Private" forKey:@"Privacy"];
-    [_responseDict setObject:@"Male" forKey:@"Gender"];
+    _postDict = [[NSMutableDictionary alloc] init];
+    _postDict = [[NSMutableDictionary alloc] init];
+    timeFormatter = [[NSDateFormatter alloc] init];
+    [timeFormatter setDateFormat:@"h:mm a"];
     
     _arrFriends = [[NSMutableArray alloc] init];
     FBRequest* friendsRequest = [FBRequest requestForMyFriends];
@@ -60,9 +68,14 @@ int segmentIndex;
             NSLog(@"I have a friend named %@ with id %@", friend.name, friend.id);
         }
     }];
-
-    NSLog(@"_arrFriends...%@",_arrFriends);
+    
+     NSLog(@"_arrFriends...%@",_arrFriends);
     // Do any additional setup after loading the view.
+}
+
+-(void)pickerChanged:(id)sender{
+      NSLog(@"TIme....%@",[timeFormatter stringFromDate:[sender date]]);
+     txtTime.text = [timeFormatter stringFromDate:[sender date]];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -86,6 +99,11 @@ int segmentIndex;
        [tableFriends reloadData];
 }
 
+-(IBAction)privateLockPressed:(id)sender{
+    NSLog(@"privateLockPressed");
+    [_postDict setObject:@"YES" forKey:@"Private"];
+}
+
 -(void)getFacebookFriends{
     _arrFriends = [[NSMutableArray alloc] init];
     FBRequest* friendsRequest = [FBRequest requestForMyFriends];
@@ -100,9 +118,7 @@ int segmentIndex;
         }
     }];
     [self performSelector:@selector(reloadTableView) withObject:self afterDelay:2.0];
-
 }
-
 
 -(void)getContactFromAddressBook
 {
@@ -442,7 +458,7 @@ int segmentIndex;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return [_arrFriends count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -453,19 +469,24 @@ int segmentIndex;
     if (cell==nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     UILabel *senderLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 11, 220, 20)];
     senderLabel.font = [UIFont boldSystemFontOfSize:15.0];
+    
     if (segmentIndex == 0) {
-//        senderLabel.text = [[_arrFriends objectAtIndex:indexPath.row] valueForKey:@"name"];
-        senderLabel.text = @"Friedns";
+      senderLabel.text = [[_arrFriends objectAtIndex:indexPath.row] valueForKey:@"name"];
     }
     else{
         Person *person = [_arrFriends objectAtIndex:indexPath.row];
         senderLabel.text = [NSString stringWithFormat:@"%@",person.firstName];
     }
+    
+    if ([[_postDict valueForKey:[[_arrFriends objectAtIndex:indexPath.row] valueForKey:@"id"]] isEqualToString:@"1"]) {
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(270, 05, 20, 20)];
+        [imageView setImage:[UIImage imageNamed:@"Home.png"]];
+        [cell.contentView addSubview:imageView];
+    }
     [cell.contentView addSubview:senderLabel];
-
     return cell;
 }
 
@@ -475,17 +496,16 @@ int segmentIndex;
     [imageView setImage:[UIImage imageNamed:@"Home.png"]];
     
     UITableViewCell *cell = (UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    
-    NSLog(@"cell.contentView...%@",[cell.contentView subviews]);
-
     if ([[cell.contentView subviews] count]>1 ) {
-        if ([[[cell.contentView subviews] objectAtIndex:1] isKindOfClass:[UIImageView class]]) {
-            UIImageView *image = (UIImageView *)[cell.contentView.subviews objectAtIndex:1];
-            [image removeFromSuperview];
+        for (id image in [cell.contentView subviews]) {
+            if ([image isKindOfClass:[UIImageView class]]) {
+                [_postDict setObject:@"0" forKey:[[_arrFriends objectAtIndex:indexPath.row] valueForKey:@"id"]];
+                [image removeFromSuperview];
+            }
         }
-        NSLog(@"Conmtains Image");
     }
     else{
+        [_postDict setObject:@"1"                                                                                  forKey:[[_arrFriends objectAtIndex:indexPath.row] valueForKey:@"id"]];
         [cell.contentView addSubview:imageView];
     }
 }
@@ -513,24 +533,79 @@ int segmentIndex;
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    if ([textField isEqual:txtTime])
+    {
+        [txtName resignFirstResponder];
+        [txtPlace resignFirstResponder];
+        [txtActivity resignFirstResponder];
+        [self selectDateOrTime];
+    }else{
+        [self donePressed];
+    }
+    return YES;
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
 }
 
+//- (void)textFieldDidBeginEditing:(UITextField *)textField{
+//    if ([textField isEqual:txtTime]) {
+//        [txtTime resignFirstResponder];
+//        [self selectDateOrTime];
+//    }
+//}
 
--(IBAction)btnCreatePressed:(id)sender{
-    [_responseDict setObject:txtName.text forKey:@"Name"];
-    [_responseDict setObject:txtTime.text forKey:@"Time"];
-    [_responseDict setObject:txtPlace.text forKey:@"Place"];
-    [_responseDict setObject:txtActivity.text forKey:@"Activity"];
-    NSLog(@"_responseDict..%@",_responseDict);
+-(IBAction)maleSwitchPressed:(id)sender{
+    maleSwitch.isOn?[_postDict setObject:@"YES" forKey:@"Male"]:[_postDict setObject:@"NO" forKey:@"Male"];;
+    NSLog(@"Male Switch");
+    NSLog(@"_PostDict..%@",_postDict);
+}
+
+-(IBAction)femaleSwitchPressed:(id)sender{
+    femaleSwitch.isOn?[_postDict setObject:@"YES" forKey:@"Female"]:[_postDict setObject:@"NO" forKey:@"Female"];;
+    NSLog(@"_PostDict..%@",_postDict);
+}
+
+-(IBAction)btnPublishPressed:(id)sender{
+    [_postDict setObject:txtName.text forKey:@"Name"];
+    [_postDict setObject:txtTime.text forKey:@"Time"];
+    [_postDict setObject:txtPlace.text forKey:@"Place"];
+    [_postDict setObject:txtActivity.text forKey:@"Activity"];
+    NSLog(@"_postDict..%@",_postDict);
     [AlertView showAlertwithTitle:@"Success" message:@"Event has been created successfully"];
 }
 
 -(IBAction)btnLogOutPressed:(id)sender{
     UINavigationController *navController =(UINavigationController *) [UIApplication sharedApplication].keyWindow.rootViewController;
     [navController popViewControllerAnimated:YES];
+}
+
+-(void)selectDateOrTime{
+    
+    myPicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0,353,0,0)];
+    myPicker.backgroundColor = [UIColor lightGrayColor];
+    myPicker.datePickerMode = UIDatePickerModeTime;
+    [myPicker addTarget:self action:@selector(pickerChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:myPicker];
+    
+    toolbar = [[UIToolbar alloc] initWithFrame: CGRectMake(0, 308, myPicker.frame.size.width, 50)];
+    [myPicker setDate: txtTime.text.length ? [timeFormatter dateFromString:txtTime.text]:[NSDate date] animated:YES];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle: @"Done" style: UIBarButtonItemStyleBordered target: self action: @selector(donePressed)];
+    doneButton.tintColor = [UIColor colorWithRed:14.0/255.0 green:112.0/255.0 blue:220.0 /255.0 alpha:1.0];
+    UIBarButtonItem* flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    toolbar.items = [NSArray arrayWithObjects:flexibleSpace, doneButton, nil];
+    [self.view addSubview: toolbar];
+}
+
+-(void)donePressed{
+//    _scrollView.contentOffset = CGPointMake(0, 0);
+//    [_txtTherapistName resignFirstResponder];
+    [myPicker removeFromSuperview];
+    [toolbar removeFromSuperview];
+//    [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 -(void)synchroniseEventsWithDeviceCalender{
@@ -669,8 +744,6 @@ int segmentIndex;
         }
     }
 }
-
-
 
 /*
 #pragma mark - Navigation

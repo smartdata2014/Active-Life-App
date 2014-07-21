@@ -15,6 +15,8 @@
 }
 -(IBAction)btnMenuPressed:(id)sender;
 -(IBAction)btnLogOutPressed:(id)sender;
+
+
 @property (nonatomic, strong) NSDictionary *responseDict;
 @property (nonatomic, strong) NSMutableArray *arrEvents;
 @end
@@ -79,6 +81,7 @@
 {
     static NSString *CellIdentifier = @"ActivityCells";
     UITableViewCell *cell;
+    
     if (cell==nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
@@ -108,6 +111,7 @@
     }
     [tblActivities reloadData];
 }
+
 
 
 /*

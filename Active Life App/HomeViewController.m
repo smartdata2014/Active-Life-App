@@ -74,7 +74,7 @@
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:[[[[_responseDict valueForKey:@"Events"] objectAtIndex:1] valueForKey:@"lat"] doubleValue]
                                                             longitude:[[[[_responseDict valueForKey:@"Events"] objectAtIndex:1] valueForKey:@"long"] doubleValue]
                                                                  zoom:5];
-    mapView_ = [GMSMapView mapWithFrame:CGRectMake(0, 65, 320, 505) camera:camera];
+    mapView_ = [GMSMapView mapWithFrame:CGRectMake(0, 282, 320, 286) camera:camera];
     mapView_.myLocationEnabled = YES;
     mapView_.mapType = kGMSTypeNormal;
     mapView_.indoorEnabled = YES;
@@ -201,14 +201,12 @@
     
     if ([segmentControl selectedSegmentIndex] == 0) {
         eventTableView.hidden = NO;
-        eventScrollView.hidden = NO;
         mapView_.hidden = YES;
         NSLog(@"ListView");
     }
     else if ([segmentControl selectedSegmentIndex] == 1)
     {
         eventTableView.hidden = YES;
-        eventScrollView.hidden = YES;
         mapView_.hidden = NO;
         NSLog(@"Map View");
     }

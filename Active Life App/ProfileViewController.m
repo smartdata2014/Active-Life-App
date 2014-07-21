@@ -41,10 +41,10 @@
     _arrEvents = [[NSMutableArray alloc] init];
     _responseDict = (NSDictionary *)[Helper ReadFromJSONStore:@"Profile.json"];
     
-    lblName.text = [_responseDict valueForKey:@"Name"];
-    lblPlace.text = [_responseDict valueForKey:@"Location"];
-    lblInterestTags.text = [_responseDict valueForKey:@"Interest Tags"];
-    lblAboutMe.text = [_responseDict valueForKey:@"About me"];
+//    lblName.text = [_responseDict valueForKey:@"Name"];
+//    lblPlace.text = [_responseDict valueForKey:@"Location"];
+//    lblInterestTags.text = [_responseDict valueForKey:@"Interest Tags"];
+//    lblAboutMe.text = [_responseDict valueForKey:@"About me"];
     _arrEvents = [_responseDict valueForKey:@"My Events"];
     // Do any additional setup after loading the view.
 }

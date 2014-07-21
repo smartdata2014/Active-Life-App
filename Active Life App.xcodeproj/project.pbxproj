@@ -529,9 +529,6 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = sdnmacmini10;
 				TargetAttributes = {
-					6A079F4B195847490058D230 = {
-						DevelopmentTeam = T4XP6BY5C7;
-					};
 					6A079F6C195847490058D230 = {
 						TestTargetID = 6A079F4B195847490058D230;
 					};

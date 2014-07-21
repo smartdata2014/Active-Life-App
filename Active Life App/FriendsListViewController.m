@@ -15,6 +15,7 @@
 }
 
 @property (nonatomic, strong) NSMutableArray *arrFriends;
+@property (nonatomic, strong) NSMutableDictionary *postDict;
 @property (nonatomic, strong) ABPeoplePickerNavigationController *addressBookController;
 @property (retain, nonatomic) FBFriendPickerViewController *friendPickerController;
 @property (retain, nonatomic) UISearchBar *searchBar;
@@ -60,7 +61,7 @@ int segmentIndex;
                          [self addSearchBarToFriendPickerView];
                      }
      ];
-
+    _postDict = [[NSMutableDictionary alloc] init];
     // Do any additional setup after loading the view.
 }
 
@@ -568,6 +569,7 @@ int segmentIndex;
     if (cell==nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     UILabel *senderLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 11, 220, 20)];
     senderLabel.font = [UIFont boldSystemFontOfSize:15.0];

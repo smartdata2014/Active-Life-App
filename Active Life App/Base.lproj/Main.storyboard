@@ -465,34 +465,28 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CG9-lz-6jx">
-                                <rect key="frame" x="168" y="117" width="132" height="25"/>
+                                <rect key="frame" x="175" y="108" width="125" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Eb-ko-bXk">
-                                <rect key="frame" x="168" y="157" width="132" height="25"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="140" translatesAutoresizingMaskIntoConstraints="NO" id="4Eb-ko-bXk">
+                                <rect key="frame" x="168" y="143" width="140" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2X-sZ-1AN">
-                                <rect key="frame" x="168" y="219" width="132" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <string key="text">Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5FG-Ht-IgJ">
-                                <rect key="frame" x="1" y="312" width="319" height="29"/>
+                                <rect key="frame" x="-1" y="312" width="321" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="My events"/>
-                                    <segment title="Went"/>
-                                    <segment title="Going"/>
+                                    <segment title="Upcoming Events"/>
+                                    <segment title="Attended Events"/>
                                 </segments>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="SegmentControlActions:" destination="RgF-AO-HXc" eventType="valueChanged" id="dAd-5n-u66"/>
                                 </connections>
@@ -517,13 +511,44 @@
                                     <outlet property="delegate" destination="RgF-AO-HXc" id="z0l-Qv-gok"/>
                                 </connections>
                             </tableView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="default_marker.png" translatesAutoresizingMaskIntoConstraints="NO" id="Csr-pQ-rHI">
+                                <rect key="frame" x="174" y="203" width="22" height="39"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="default_marker.png" translatesAutoresizingMaskIntoConstraints="NO" id="xb8-iG-wfI">
+                                <rect key="frame" x="239" y="203" width="22" height="39"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="default_marker.png" translatesAutoresizingMaskIntoConstraints="NO" id="CSm-jQ-odi">
+                                <rect key="frame" x="204" y="203" width="22" height="39"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="default_marker.png" translatesAutoresizingMaskIntoConstraints="NO" id="dr7-bT-JN0">
+                                <rect key="frame" x="269" y="203" width="22" height="39"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="default_marker.png" translatesAutoresizingMaskIntoConstraints="NO" id="G67-WG-EAk">
+                                <rect key="frame" x="176" y="250" width="22" height="39"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="default_marker.png" translatesAutoresizingMaskIntoConstraints="NO" id="mA8-2N-ebS">
+                                <rect key="frame" x="241" y="250" width="22" height="39"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="default_marker.png" translatesAutoresizingMaskIntoConstraints="NO" id="0ON-ND-LyH">
+                                <rect key="frame" x="206" y="250" width="22" height="39"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="default_marker.png" translatesAutoresizingMaskIntoConstraints="NO" id="2ZW-Rq-syI">
+                                <rect key="frame" x="271" y="250" width="22" height="39"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="eventTableView" destination="t71-eo-ulA" id="RdZ-bY-NaW"/>
                         <outlet property="imgProfilePic" destination="clm-c9-TCq" id="Fke-CG-dCj"/>
-                        <outlet property="lblAboutMe" destination="C2X-sZ-1AN" id="BMn-ji-S0R"/>
                         <outlet property="lblInterestTags" destination="4Eb-ko-bXk" id="TCs-uz-tgQ"/>
                         <outlet property="lblName" destination="epM-NM-AdO" id="ELD-2r-7gm"/>
                         <outlet property="lblPlace" destination="CG9-lz-6jx" id="v4U-HL-a2O"/>
@@ -639,6 +664,7 @@
                     <connections>
                         <outlet property="eventScrollView" destination="69z-vY-HXZ" id="RPV-h0-lLc"/>
                         <outlet property="eventTableView" destination="8Op-AB-AJE" id="d3w-IZ-beH"/>
+                        <outlet property="segmentControl" destination="TRA-6d-3a8" id="bL5-nY-9Cs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLt-tg-mFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -926,7 +952,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnCreatePressed:" destination="bXX-5n-rnA" eventType="touchUpInside" id="PfZ-XN-7uJ"/>
+                                    <action selector="btnPublishPressed:" destination="bXX-5n-rnA" eventType="touchUpInside" id="nAX-DB-cYP"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VPb-yD-pcw">
@@ -959,11 +985,17 @@
                                 <rect key="frame" x="241" y="233" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="onTintColor" red="0.16078431904315948" green="0.59215688705444336" blue="0.93333339691162109" alpha="1" colorSpace="deviceRGB"/>
+                                <connections>
+                                    <action selector="maleSwitchPressed:" destination="bXX-5n-rnA" eventType="valueChanged" id="jq7-gy-wln"/>
+                                </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cch-GB-Y4c">
                                 <rect key="frame" x="241" y="268" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="onTintColor" red="0.15686275064945221" green="0.58431375026702881" blue="0.91764712333679199" alpha="1" colorSpace="deviceRGB"/>
+                                <connections>
+                                    <action selector="femaleSwitchPressed:" destination="bXX-5n-rnA" eventType="valueChanged" id="7gy-LM-BiG"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lock it to make it private" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8C-Yk-fQQ">
                                 <rect key="frame" x="152" y="214" width="133" height="21"/>
@@ -978,11 +1010,16 @@
                                 <state key="normal" title="L">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="privateLockPressed:" destination="bXX-5n-rnA" eventType="touchUpInside" id="nSF-2c-sEh"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="femaleSwitch" destination="Cch-GB-Y4c" id="Xa7-yC-gCk"/>
+                        <outlet property="maleSwitch" destination="Rdq-du-h1s" id="jQ9-6M-vko"/>
                         <outlet property="segmentControl" destination="VPb-yD-pcw" id="Xed-ku-on5"/>
                         <outlet property="tableFriends" destination="PJA-iw-nLB" id="wJb-qQ-9rm"/>
                         <outlet property="txtActivity" destination="zqc-EY-fpz" id="Bjt-Yw-cov"/>
@@ -1236,6 +1273,7 @@
     <resources>
         <image name="backgroundbg_trans.png" width="320" height="568"/>
         <image name="curvebox.png" width="320" height="568"/>
+        <image name="default_marker.png" width="22" height="39"/>
         <image name="iOS Simulator Screen shot 25-Jun-2014 9.25.20 AM.png" width="640" height="960"/>
         <image name="textareabox2.png" width="320" height="568"/>
     </resources>
