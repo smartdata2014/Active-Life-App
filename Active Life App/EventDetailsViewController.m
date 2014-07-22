@@ -69,7 +69,7 @@
     lblTimeDate.text = [_responseDict valueForKey:@"Time/Date"];
     
     UIButton *btnJoinNow = [[UIButton alloc] initWithFrame:CGRectMake(200, 20, 105, 35)];
-    [btnJoinNow setImage:[UIImage imageNamed:@"btn_joinnow.png"] forState:UIControlStateNormal];
+    [btnJoinNow setImage:[UIImage imageNamed:@"btn_joinnow"] forState:UIControlStateNormal];
     [btnJoinNow addTarget:self action:@selector(btnJoinNowPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     [scrollView addSubview:imageView];
