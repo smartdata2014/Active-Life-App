@@ -9,22 +9,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Active Life App/AppDelegate.m"
-            timestampString = "425277531.401602"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "+storyBoard"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Active Life App/LoginViewController.m"
             timestampString = "426426848.386275"
             startingColumnNumber = "9223372036854775807"
@@ -73,28 +57,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Active Life App/MenuViewController.m"
-            timestampString = "425384130.434798"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Active Life App/HomeViewController.m"
-            timestampString = "427355483.770174"
+            timestampString = "427702901.377217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "-SegmentControlActions:"
             landmarkType = "5">
          </BreakpointContent>
@@ -105,43 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Active Life App/Helper.m"
-            timestampString = "425469223.589066"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "13"
-            endingLineNumber = "13">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Active Life App/HomeViewController.m"
-            timestampString = "426423278.578229"
+            timestampString = "427642804.975825"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "-viewDidLoad"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Active Life App/EventDetailsViewController.m"
-            timestampString = "427092922.114502"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "-tableView:viewForHeaderInSection:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -181,7 +119,7 @@
                   symbolName = "-[AcivitiesViewController responseDict]"
                   moduleName = "Active Life App"
                   urlString = "file://localhost/Users/sdnmacmini10/Day%20Users/Himanshu%20Tripathi/Official/Projects/Activelife_SVN/activelifeapp/Active%20Life%20App/AcivitiesViewController.m"
-                  timestampString = "427444075.674028"
+                  timestampString = "427632353.179488"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
@@ -195,7 +133,7 @@
                   symbolName = "-[AcivitiesViewController setResponseDict:]"
                   moduleName = "Active Life App"
                   urlString = "file://localhost/Users/sdnmacmini10/Day%20Users/Himanshu%20Tripathi/Official/Projects/Activelife_SVN/activelifeapp/Active%20Life%20App/AcivitiesViewController.m"
-                  timestampString = "427444075.674237"
+                  timestampString = "427632353.179694"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
@@ -388,11 +326,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/CreateEventViewController.m"
-            timestampString = "427438196.084649"
+            timestampString = "427613553.118619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "572"
-            endingLineNumber = "572"
+            startingLineNumber = "571"
+            endingLineNumber = "571"
             landmarkName = "-btnPublishPressed:"
             landmarkType = "5">
          </BreakpointContent>
@@ -436,11 +374,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/HomeViewController.m"
-            timestampString = "427177723.073442"
+            timestampString = "427702901.377217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "-locationManager:didUpdateLocations:"
             landmarkType = "5">
          </BreakpointContent>
@@ -452,11 +390,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/HomeViewController.m"
-            timestampString = "427118048.880068"
+            timestampString = "427702901.377217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "-intializeMap"
             landmarkType = "5">
          </BreakpointContent>
@@ -484,11 +422,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/HomeViewController.m"
-            timestampString = "427355483.770174"
+            timestampString = "427702901.377217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "-addDirections:"
             landmarkType = "5">
          </BreakpointContent>
@@ -500,11 +438,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/ProfileViewController.m"
-            timestampString = "427284830.034232"
+            timestampString = "427626701.494531"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "arrEvents"
             landmarkType = "19">
             <Locations>
@@ -515,11 +453,11 @@
                   symbolName = "-[ProfileViewController arrEvents]"
                   moduleName = "Active Life App"
                   urlString = "file://localhost/Users/sdnmacmini10/Day%20Users/Himanshu%20Tripathi/Official/Projects/Activelife_SVN/activelifeapp/Active%20Life%20App/ProfileViewController.m"
-                  timestampString = "427444075.682409"
+                  timestampString = "427632353.217692"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
                   offsetFromSymbolStart = "24">
                </Location>
                <Location
@@ -529,11 +467,11 @@
                   symbolName = "-[ProfileViewController setArrEvents:]"
                   moduleName = "Active Life App"
                   urlString = "file://localhost/Users/sdnmacmini10/Day%20Users/Himanshu%20Tripathi/Official/Projects/Activelife_SVN/activelifeapp/Active%20Life%20App/ProfileViewController.m"
-                  timestampString = "427444075.682609"
+                  timestampString = "427632353.217914"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
                   offsetFromSymbolStart = "31">
                </Location>
             </Locations>
@@ -546,11 +484,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/CreateEventViewController.m"
-            timestampString = "427379106.339845"
+            timestampString = "427613553.118619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "464"
-            endingLineNumber = "464"
+            startingLineNumber = "463"
+            endingLineNumber = "463"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -594,11 +532,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/CreateEventViewController.m"
-            timestampString = "427379106.339845"
+            timestampString = "427613553.118619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "459"
-            endingLineNumber = "459"
+            startingLineNumber = "458"
+            endingLineNumber = "458"
             landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -610,11 +548,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/CreateEventViewController.m"
-            timestampString = "427379106.339845"
+            timestampString = "427613553.118619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "454"
-            endingLineNumber = "454"
+            startingLineNumber = "453"
+            endingLineNumber = "453"
             landmarkName = "-numberOfSectionsInTableView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -626,11 +564,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/CreateEventViewController.m"
-            timestampString = "427379106.339845"
+            timestampString = "427613553.118619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "453"
-            endingLineNumber = "453"
+            startingLineNumber = "452"
+            endingLineNumber = "452"
             landmarkName = "@implementation CreateEventViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -642,11 +580,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/HomeViewController.m"
-            timestampString = "427376764.782302"
+            timestampString = "427702901.377217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -658,11 +596,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/CreateEventViewController.m"
-            timestampString = "427379106.339845"
+            timestampString = "427613553.118619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "493"
-            endingLineNumber = "493"
+            startingLineNumber = "492"
+            endingLineNumber = "492"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -674,11 +612,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/CreateEventViewController.m"
-            timestampString = "427438196.084649"
+            timestampString = "427613553.118619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "561"
-            endingLineNumber = "561"
+            startingLineNumber = "560"
+            endingLineNumber = "560"
             landmarkName = "-maleSwitchPressed:"
             landmarkType = "5">
          </BreakpointContent>
@@ -690,11 +628,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/CreateEventViewController.m"
-            timestampString = "427438196.084649"
+            timestampString = "427613553.118619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "567"
-            endingLineNumber = "567"
+            startingLineNumber = "566"
+            endingLineNumber = "566"
             landmarkName = "-femaleSwitchPressed:"
             landmarkType = "5">
          </BreakpointContent>
@@ -706,12 +644,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Active Life App/HomeViewController.m"
-            timestampString = "427444075.399586"
+            timestampString = "427702901.377217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Active Life App/ProfileViewController.m"
+            timestampString = "427631771.571793"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Active Life App/ProfileViewController.m"
+            timestampString = "427632567.083401"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Active Life App/ProfileViewController.m"
+            timestampString = "427632567.083401"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "-btnGetNextIcons:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Active Life App/ProfileViewController.m"
+            timestampString = "427631771.571793"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

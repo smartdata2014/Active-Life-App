@@ -336,7 +336,6 @@ NSDateFormatter *timeFormatter;
                         
                         NSLog(@"phoneNumber %@ )", phoneNumber);
                     }
-                    
                 }
                 
                 NSString *fullName;

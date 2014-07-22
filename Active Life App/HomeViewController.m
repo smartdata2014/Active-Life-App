@@ -26,6 +26,8 @@
 -(IBAction)btnLogOutPressed:(id)sender;
 -(IBAction)btnMenuPressed:(id)sender;
 -(IBAction)SegmentControlActions:(id)sender;
+-(IBAction)btnJoinNowPressed:(id)sender;
+
 -(void)intializeMap;
 
 @end
@@ -46,6 +48,7 @@
     [super viewDidLoad];
     
     NSLog(@"navigationController..%@",self.navigationController);
+//    self.navigationController.navigationBar.tintColor = [UIColor blueColor];
     
     self.waypoints = [NSMutableArray array];
     self.waypointStrings = [NSMutableArray array];
@@ -53,6 +56,34 @@
     _responseDict = [[NSDictionary alloc] init];
     _responseDict = (NSDictionary *)[Helper ReadFromJSONStore:@"Home.json"];
     NSLog(@"responseDict..%@",_responseDict);
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 199)];
+    imageView.image = [UIImage imageNamed:@"event_img"];
+    
+    UILabel *lblEvent = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 119, 25)];
+    lblEvent.font = [UIFont fontWithName:@"Helvetica Light" size:16.0];
+    lblEvent.text = @"Featured Event";
+    
+    UILabel *lblLocation = [[UILabel alloc] initWithFrame:CGRectMake(10, 23, 129, 25)];
+    lblLocation.font = [UIFont fontWithName:@"Helvetica Light" size:13.0];
+    lblLocation.textColor = [UIColor darkGrayColor];
+    lblLocation.text = @"North Hollywood";
+    
+    UILabel *lblTime = [[UILabel alloc] initWithFrame:CGRectMake(150, 23, 49, 25)];
+    lblTime.font = [UIFont fontWithName:@"Helvetica Light" size:13.0];
+    lblTime.textColor = [UIColor darkGrayColor];
+    lblTime.text = @"8 AM";
+    
+    UIButton *btnJoinNow = [[UIButton alloc] initWithFrame:CGRectMake(205, 10, 105, 31)];
+    [btnJoinNow setImage:[UIImage imageNamed:@"btn_joinnow"] forState:UIControlStateNormal];
+    [btnJoinNow addTarget:self action:@selector(btnJoinNowPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [eventScrollView addSubview:imageView];
+    [eventScrollView addSubview:lblEvent];
+    [eventScrollView addSubview:lblLocation];
+    [eventScrollView addSubview:lblTime];
+    [eventScrollView addSubview:btnJoinNow];
+    
 //    lblEvent.text = [_responseDict valueForKey:@"Event_name"];
 //    lblLocation.text = [_responseDict valueForKey:@"Location"];
 //    lblTimeDate.text = [_responseDict valueForKey:@"Time/Date"];
@@ -74,7 +105,7 @@
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:[[[[_responseDict valueForKey:@"Events"] objectAtIndex:1] valueForKey:@"lat"] doubleValue]
                                                             longitude:[[[[_responseDict valueForKey:@"Events"] objectAtIndex:1] valueForKey:@"long"] doubleValue]
                                                                  zoom:5];
-    mapView_ = [GMSMapView mapWithFrame:CGRectMake(0, 282, 320, 286) camera:camera];
+    mapView_ = [GMSMapView mapWithFrame:CGRectMake(0, 293, 320, 286) camera:camera];
     mapView_.myLocationEnabled = YES;
     mapView_.mapType = kGMSTypeNormal;
     mapView_.indoorEnabled = YES;
@@ -212,8 +243,12 @@
     }
 }
 
+-(IBAction)btnJoinNowPressed:(id)sender{
+    NSLog(@"Join Now");
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 78.0;
+    return 64.0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -243,6 +278,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     static NSString *CellIdentifier = @"EventDetailCell";
     UITableViewCell *cell;
     if (cell==nil) {
@@ -250,26 +286,39 @@
     }
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    UILabel *senderLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 11, 150, 20)];
-    senderLabel.font = [UIFont boldSystemFontOfSize:18.0];
+    UILabel *senderLabel = [[UILabel alloc] initWithFrame:CGRectMake(24, 11, 150, 20)];
+    senderLabel.font = [UIFont fontWithName:@"Helvetica Light" size:16.0];
     senderLabel.text = [[[_responseDict valueForKey:@"Events"]objectAtIndex:indexPath.row] valueForKey:@"event_name"];
-    senderLabel.textColor = [UIColor darkGrayColor];
     
-    UILabel *locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 40, 80, 20)];
-    locationLabel.font = [UIFont boldSystemFontOfSize:15.0];
-    locationLabel.text = [[[_responseDict valueForKey:@"Events"]objectAtIndex:indexPath.row] valueForKey:@"Location"];
+    NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
+    attachment.image = [UIImage imageNamed:@"location_icon.png"];
+    NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
+    NSMutableAttributedString *myString= [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@",[[[_responseDict valueForKey:@"Events"]objectAtIndex:indexPath.row] valueForKey:@"Location"]]];
+    [myString insertAttributedString:attachmentString atIndex:0];
+    
+    UILabel *locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(24, 32, 80, 20)];
+    locationLabel.font = [UIFont fontWithName:@"Helvetica Light" size:14.0];
+//    locationLabel.text = [[[_responseDict valueForKey:@"Events"]objectAtIndex:indexPath.row] valueForKey:@"Location"];
+    locationLabel.attributedText = myString;
     locationLabel.textColor = [UIColor darkGrayColor];
 
-    UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 40, 100, 20)];
-    timeLabel.font = [UIFont boldSystemFontOfSize:15.0];
-    timeLabel.text = [[[_responseDict valueForKey:@"Events"]objectAtIndex:indexPath.row] valueForKey:@"Time"];
+    attachment = [[NSTextAttachment alloc] init];
+    attachment.image = [UIImage imageNamed:@"time_icon.png"];
+    attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
+    myString= [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@",[[[_responseDict valueForKey:@"Events"]objectAtIndex:indexPath.row] valueForKey:@"Time"]]];
+    [myString insertAttributedString:attachmentString atIndex:0];
+
+    UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 32, 100, 20)];
+    timeLabel.font = [UIFont fontWithName:@"Helvetica Light" size:14.0];
+    timeLabel.attributedText = myString;
     timeLabel.textColor = [UIColor darkGrayColor];
 
-    UIImageView *eventImgView = [[UIImageView alloc] initWithFrame:CGRectMake(250, 16, 40, 40)];
-    eventImgView.image = [UIImage imageNamed:@"Home.png"];
+    UIImageView *eventImgView = [[UIImageView alloc] initWithFrame:CGRectMake(250, 19, 25, 25)];
+    eventImgView.image = [UIImage imageNamed:@"fishing_icon"];
     
     [cell.contentView addSubview:senderLabel];
     [cell.contentView addSubview:locationLabel];
+    [cell.contentView addSubview:timeLabel];
     [cell.contentView addSubview:eventImgView];
     return cell;
 }
